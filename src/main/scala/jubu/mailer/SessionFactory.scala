@@ -35,7 +35,7 @@ object SessionFactory {
 					@tailrec
 					def walk(prev: impl, properties: Properties = new Properties()): Properties = {
 						prop.convert.map { p => properties.setProperty(p._1, p._2.toString) }
-						if (prev == null) properties else walk(prev, properties)
+						if (prev.prev == null) properties else walk(prev, properties)
 					}
 					walk(this)
 				}

@@ -35,13 +35,13 @@ case class Content(parts: MimeBodyPart*) {
 }
 
 case class Msg(from: InternetAddress,
-               subject: String,
-               content: Content,
-               to: Seq[InternetAddress] = Seq.empty[InternetAddress],
-               cc: Seq[InternetAddress] = Seq.empty[InternetAddress],
-               bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
-               replyTo: Option[InternetAddress] = None,
-               replyToAll: Option[Boolean] = None) {
+							 subject: String,
+							 content: Content,
+							 to: Seq[InternetAddress] = Seq.empty[InternetAddress],
+							 cc: Seq[InternetAddress] = Seq.empty[InternetAddress],
+							 bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
+							 replyTo: Option[InternetAddress] = None,
+							 replyToAll: Option[Boolean] = None) {
 
 }
 
@@ -58,7 +58,7 @@ trait Mailer {
 	* @author jubu
 	*/
 object Mailer extends MailKeys {
-	def build(session: Session, transport: Option[Transport]) = new Mailer {
+	def build(session: Session, transport: Option[Transport] = None) = new Mailer {
 
 
 		val trt = transport match {
