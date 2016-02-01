@@ -8,12 +8,12 @@ import scala.annotation.tailrec
 /**
 	* @author jubu
 	*/
-trait Props {
-	def append(p: Prop): Props
+trait SessionFactory {
+	def append(p: Prop): SessionFactory
 
-	def ::(p: Prop): Props = append(p)
+	def ::(p: Prop): SessionFactory = append(p)
 
-	def +(p: Prop): Props = ::(p)
+	def +(p: Prop): SessionFactory = ::(p)
 
 	/**
 		*
@@ -23,13 +23,13 @@ trait Props {
 	def session(credentials: Option[(String, String)] = None): Session
 }
 
-object Props {
-	def apply() = new Props {
-		override def append(p: Prop): Props = {
-			case class impl(prev: impl) extends Props {
+object SessionFactory {
+	def apply() = new SessionFactory {
+		override def append(p: Prop): SessionFactory = {
+			case class impl(prev: impl) extends SessionFactory {
 				val prop = p
 
-				override def append(p: Prop): Props = new impl(this)
+				override def append(p: Prop): SessionFactory = new impl(this)
 
 				def properties(): Properties = {
 					@tailrec
@@ -70,7 +70,7 @@ trait Prop {
 	def convert(): Seq[(String, _)]
 }
 
-case class SmtpAddress(host: String, port: Int) extends Prop {
+case class SmtpAddress(host: String, port: Int = 25) extends Prop {
 	override def convert() = Seq("mail.smtp.host" -> host, "mail.smtp.port" -> port)
 }
 

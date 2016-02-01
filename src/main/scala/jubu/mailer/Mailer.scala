@@ -23,7 +23,7 @@ case class Msg(from:InternetAddress,
                bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
                replyTo: Option[InternetAddress] = None,
                replyToAll: Option[Boolean] = None,
-               headers:Props = Props()) {
+               headers:SessionFactory = SessionFactory()) {
 
 }
 
