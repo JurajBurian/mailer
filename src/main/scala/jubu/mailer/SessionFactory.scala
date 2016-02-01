@@ -62,16 +62,39 @@ object SessionFactory {
 }
 
 
-trait Prop {
+trait  MailKeys {
+	val SMTPHostKey = "mail.smtp.host"
+	val SMTPPortKey = "mail.smtp.port"
+	val TransportProtocolKey = "mail.transport.protocol"
+}
+
+
+trait Prop extends MailKeys  {
+
 	/**
 		*
 		* @return sequence of key value pairs
 		*/
 	def convert(): Seq[(String, _)]
+
+	/**
+		*
+		* @return sequence of keys in given property
+		*/
+	def keys() = convert().map(_._1)
+
 }
 
+
 case class SmtpAddress(host: String, port: Int = 25) extends Prop {
-	override def convert() = Seq("mail.smtp.host" -> host, "mail.smtp.port" -> port)
+	override def convert() = Seq(SMTPHostKey -> host, SMTPPortKey -> port)
 }
+
+case class TransportProtocol(protocol:String = "smtp") extends Prop {
+	override def convert() = Seq(TransportProtocolKey->protocol)
+}
+
+
+
 
 
