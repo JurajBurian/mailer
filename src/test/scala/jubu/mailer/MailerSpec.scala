@@ -35,5 +35,7 @@ class MailerSpec extends FlatSpec with Matchers {
 		inbox.open(Folder.READ_ONLY)
 
 		inbox.getMessageCount should be(1)
+		val first = inbox.getMessage(1)
+		first.getSubject should be (MessageSubject)
 	}
 }

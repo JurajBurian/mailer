@@ -86,6 +86,7 @@ object Mailer extends MailKeys {
 			msg.to.map(message.addRecipient(Message.RecipientType.TO, _))
 			msg.cc.map(message.addRecipient(Message.RecipientType.CC, _))
 			msg.bcc.map(message.addRecipient(Message.RecipientType.BCC, _))
+			message.setSubject(msg.subject)
 			message.setContent(new MimeMultipart() {
 				msg.content.parts.foreach(addBodyPart(_))
 			})
