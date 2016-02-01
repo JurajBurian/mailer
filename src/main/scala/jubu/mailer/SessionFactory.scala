@@ -34,7 +34,7 @@ object SessionFactory {
 				def properties(): Properties = {
 					@tailrec
 					def walk(prev: impl, properties: Properties = new Properties()): Properties = {
-						prop.convert().map { p => properties.setProperty(p._1, p._2.toString) }
+						prop.convert.map { p => properties.setProperty(p._1, p._2.toString) }
 						if (prev == null) properties else walk(prev, properties)
 					}
 					walk(this)
@@ -60,41 +60,3 @@ object SessionFactory {
 	}
 
 }
-
-
-trait  MailKeys {
-	val SMTPHostKey = "mail.smtp.host"
-	val SMTPPortKey = "mail.smtp.port"
-	val TransportProtocolKey = "mail.transport.protocol"
-}
-
-
-trait Prop extends MailKeys  {
-
-	/**
-		*
-		* @return sequence of key value pairs
-		*/
-	def convert(): Seq[(String, _)]
-
-	/**
-		*
-		* @return sequence of keys in given property
-		*/
-	def keys() = convert().map(_._1)
-
-}
-
-
-case class SmtpAddress(host: String, port: Int = 25) extends Prop {
-	override def convert() = Seq(SMTPHostKey -> host, SMTPPortKey -> port)
-}
-
-case class TransportProtocol(protocol:String = "smtp") extends Prop {
-	override def convert() = Seq(TransportProtocolKey->protocol)
-}
-
-
-
-
-
