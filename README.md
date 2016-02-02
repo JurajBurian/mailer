@@ -1,6 +1,6 @@
 # Mailer
-Thin wrapper over JavaMail library written in the Scala language. 
-`Mailer`'s aim is to be used in situations when is necessary to send multiple mails efficiently. `Mailer` achieves this by creating a single instance of `javax.mail.Session`, getting and opening a javax.mail.Transport instance, and sending a bulk of emails through it.
+A thin wrapper over JavaMail library written in the Scala language. 
+`Mailer`'s aim is to be used in situations when it is necessary to send multiple mails efficiently. `Mailer` achieves this by creating a single instance of `javax.mail.Session`, getting and opening a javax.mail.Transport instance, and sending a bulk of emails through it.
 ## Install
 // TODO
 ## Usage
