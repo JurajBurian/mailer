@@ -1,7 +1,10 @@
 package jubu.mailer
 
+import java.io.File
+import javax.activation.{FileDataSource, DataHandler}
 import javax.mail._
 import javax.mail.internet.{InternetAddress, MimeBodyPart, MimeMessage, MimeMultipart}
+import javax.mail.util.ByteArrayDataSource
 
 
 /**
@@ -12,17 +15,30 @@ case class Content(parts: MimeBodyPart*) {
 
 	def append(parts: MimeBodyPart*) = Content((this.parts ++ parts): _*)
 
-	def text(text: String, charset: String = "UTF-8", subtype: String = "plain") = {
+	def text(text: String, charset: String = "UTF-8", subtype: String = "plain"): Content = {
 		val part = new MimeBodyPart()
 		part.setText(text, charset, subtype)
 		append(part)
 	}
 
-	def html(html: String, charset: String = "UTF-8") = {
+	def html(html: String, charset: String = "UTF-8"): Content = {
 		val part = new MimeBodyPart()
 		part.setText(html, charset, "html")
 		append(part)
-		part
+	}
+
+	def attachFile(file: File, name: String = null): Content = {
+		val part = new MimeBodyPart()
+		part.setDataHandler(new DataHandler(new FileDataSource(file)))
+		part.setFileName(Option(name).getOrElse(file.getName))
+		append(part)
+	}
+
+	def attachBytes(bytes: Array[Byte], name: String, mimeType: String): Content = {
+		val part = new MimeBodyPart()
+		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
+		part.setFileName(name)
+		append(part)
 	}
 
 	@throws[MessagingException]
@@ -89,6 +105,7 @@ object Mailer extends MailKeys {
 			msg.cc.map(message.addRecipient(Message.RecipientType.CC, _))
 			msg.bcc.map(message.addRecipient(Message.RecipientType.BCC, _))
 			message.setSubject(msg.subject)
+			message.setFrom(msg.from)
 			message.setContent(new MimeMultipart() {
 				msg.content.parts.foreach(addBodyPart(_))
 			})
