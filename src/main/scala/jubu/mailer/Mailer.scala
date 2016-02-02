@@ -123,7 +123,6 @@ trait Mailer {
 	/**
 		* Creates new transport connection.
 		*
-		* @throws MessagingException thrown when a problem with creating the new connection occurs
 		* @return instance of the [[jubu.mailer.Mailer]] itself
 		*/
 	@throws[MessagingException]
@@ -133,7 +132,6 @@ trait Mailer {
 		* Sends the given message.
 		*
 		* @param msg message to send
-		* @throws MessagingException thrown when a problem with sending the message occurs
 		* @return instance of the [[jubu.mailer.Mailer]] itself
 		*/
 	@throws[MessagingException]
@@ -142,7 +140,6 @@ trait Mailer {
 	/**
 		* Closes the previously opened transport connection.
 		*
-		* @throws MessagingException throw when a problem with closing the connection occurs
 		* @return instance of the [[jubu.mailer.Mailer]] itself
 		*/
 	@throws[MessagingException]
