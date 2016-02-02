@@ -8,8 +8,11 @@ import javax.mail.util.ByteArrayDataSource
 
 
 /**
+	* Represents the content of the e-mail message, composed of individual `MimeBodyPart` instances.
+	* For easier use, helper methods to add specific content are available, such as `html()` for
+	* adding ''HTML'' or `attachFile()` to add file attachment.
 	*
-	* @param parts
+	* @param parts parts of the message content (represented by `MimeBodyPart` instances)
 	*/
 case class Content(parts: MimeBodyPart*) {
 

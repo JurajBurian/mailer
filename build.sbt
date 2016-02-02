@@ -28,3 +28,6 @@ libraryDependencies ++= Seq(
 	"org.scalatest" %% "scalatest" % "3.0.0-M15" % "test"
 )
 
+// enable automatic linking to the external Scaladoc of managed dependencies
+autoAPIMappings := true
+
