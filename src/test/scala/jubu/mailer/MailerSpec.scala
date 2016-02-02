@@ -18,6 +18,11 @@ class MailerSpec extends FlatSpec with Matchers {
 	val SmtpHost = "localhost"
 	val SmtpPort = 25
 
+	"Session"  should "parse set of properties and return correct value" in {
+		val session = (SmtpAddress(SmtpHost, SmtpPort) :: Debug(true) :: SmtpTimeout(1000) :: SessionFactory()).session()
+		assert(session.getProperties.size() == 4)
+	}
+
 	"The Mailer" should "send e-mail" in {
 		val session = (SmtpAddress(SmtpHost, SmtpPort) :: SessionFactory()).session()
 

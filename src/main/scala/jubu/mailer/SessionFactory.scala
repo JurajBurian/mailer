@@ -29,37 +29,41 @@ trait SessionFactory {
 object SessionFactory {
 	def apply() = new SessionFactory {
 		override def append(p: Prop): SessionFactory = {
-			case class impl(prev: impl) extends SessionFactory {
-				val prop = p
-
-				override def append(p: Prop): SessionFactory = new impl(this)
-
+			@tailrec
+			def walk(p: impl, properties: Properties = new Properties()): Properties = {
+				p.prop.convert.map { p => properties.setProperty(p._1, p._2.toString) }
+				if (p.prev == null) {
+					properties
+				} else {
+					walk(p.prev, properties)
+				}
+			}
+			case class impl(prev: impl, val prop:Prop) extends SessionFactory {
+				override def append(p: Prop): SessionFactory = new impl(this, p)
 				def properties(): Properties = {
-					@tailrec
-					def walk(prev: impl, properties: Properties = new Properties()): Properties = {
-						prop.convert.map { p => properties.setProperty(p._1, p._2.toString) }
-						if (prev.prev == null) properties else walk(prev, properties)
-					}
 					walk(this)
 				}
 
-				override def session(credentials: Option[(String, String)] = None): Session = credentials match {
-					case None => Session.getInstance(properties())
-					case Some((u, p)) => {
-						val ps = properties()
-						ps.put("mail.smtp.auth", true.toString)
-						Session.getInstance(ps, new Authenticator {
-							protected override def getPasswordAuthentication() = new PasswordAuthentication(u, p)
-						})
+				override def session(credentials: Option[(String, String)] = None): Session = {
+					val ps = properties()
+					credentials match {
+						case None => {
+							Session.getInstance(ps)
+						}
+						case Some((u, p)) => {
+							ps.put("mail.smtp.auth", true.toString)
+							Session.getInstance(ps, new Authenticator {
+								protected override def getPasswordAuthentication() = new PasswordAuthentication(u, p)
+							})
+						}
 					}
 				}
 			}
-			impl(null)
+			impl(null, p)
 		}
 
 		override def session(credentials: Option[(String, String)] = None): Session = {
 			throw new NotImplementedError()
 		}
 	}
-
 }

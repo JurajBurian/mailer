@@ -5,8 +5,13 @@ trait MailKeys {
 	val SmtpFromKey = "mail.smtp.from"
 	val SmtpHostKey = "mail.smtp.host"
 	val SmtpPortKey = "mail.smtp.port"
-	val SmtpTimeoutKey = ""
+	val SmtpTimeoutKey = "mail.smtp.timeout"
+
+	val Debug = "mail.debug"
+	val From = "mail.from"
 	val TransportProtocolKey = "mail.transport.protocol"
+	val MimeAddressStrict = "mail.mime.address.strict"
+
 }
 
 trait Prop extends MailKeys {
@@ -24,7 +29,6 @@ trait Prop extends MailKeys {
 	def keys = convert.map(_._1)
 
 }
-
 
 /**
 	*
@@ -51,6 +55,10 @@ case class SmtpFrom(from: String) extends Prop {
 	override def convert = Seq(SmtpFromKey -> from)
 }
 
+/**
+	*
+	* @param timeout Socket I/O timeout value in milliseconds. Default is infinite timeout.
+	*/
 case class SmtpTimeout(timeout: Int) extends Prop {
 	override def convert = Seq(SmtpTimeoutKey -> timeout)
 }
@@ -61,4 +69,24 @@ case class SmtpTimeout(timeout: Int) extends Prop {
 	*/
 case class TransportProtocol(protocol: String = "smtp") extends Prop {
 	override def convert = Seq(TransportProtocolKey -> protocol)
+}
+
+/**
+	*
+	* @param debug The initial debug mode. Default is false.
+	*/
+case class Debug(debug: Boolean = false) extends Prop {
+	override def convert = Seq(Debug -> debug.toString)
+}
+
+case class From(from: String) extends Prop {
+	override def convert = Seq(From -> from)
+}
+
+/**
+	*
+	* @param mimeAddressStrict The MimeMessage class uses the InternetAddress method parseHeader to parse headers in messages. This property controls the strict flag passed to the parseHeader method. The default is true.
+	*/
+case class MimeAddressStrict(mimeAddressStrict: String) extends Prop {
+	override def convert = Seq(MimeAddressStrict -> mimeAddressStrict)
 }
