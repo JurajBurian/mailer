@@ -7,6 +7,8 @@ import de.saly.javamail.mock2.{MailboxFolder, MockMailbox}
 import org.scalatest._
 
 /**
+	* Test suite used to test the basic functionality of the ''Mailer''.
+	*
 	* @author vaclav.svejcar
 	*/
 class MailerSpec extends FlatSpec with Matchers {
@@ -19,7 +21,7 @@ class MailerSpec extends FlatSpec with Matchers {
 	val SmtpHost = "localhost"
 	val SmtpPort = 25
 
-	"Session"  should "parse set of properties and return correct value" in {
+	"Session" should "parse set of properties and return correct value" in {
 		val session = (SmtpAddress(SmtpHost, SmtpPort) :: Debug(true) :: SmtpTimeout(1000) :: SessionFactory()).session()
 		assert(session.getProperties.size() == 4)
 	}
@@ -49,16 +51,16 @@ class MailerSpec extends FlatSpec with Matchers {
 		val firstContent = firstMessage.getContent
 
 		// check whether the e-mail metadata are correct
-		firstMessage.getSubject should be (MessageSubject)
-		firstMessage.getFrom()(0).toString should be (SenderAddress)
-		firstMessage.getAllRecipients()(0).toString should be (RecipientAddress)
+		firstMessage.getSubject should be(MessageSubject)
+		firstMessage.getFrom()(0).toString should be(SenderAddress)
+		firstMessage.getAllRecipients()(0).toString should be(RecipientAddress)
 
 		// check whether the content parts in the MimeMultipart message are correct
-		firstContent should be (an[MimeMultipart])
+		firstContent should be(an[MimeMultipart])
 
 		firstContent match {
 			case mm: MimeMultipart => {
-				mm.getCount should be (2)
+				mm.getCount should be(2)
 			}
 		}
 	}

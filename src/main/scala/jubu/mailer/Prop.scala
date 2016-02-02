@@ -10,6 +10,8 @@ trait MailKeys {
 	val SmtpHostKey = "mail.smtp.host"
 	val SmtpPortKey = "mail.smtp.port"
 	val SmtpUserKey = "mail.smtp.user"
+	val SmtpStartTlsEnableKey = "mail.smtp.starttls.enable"
+	val SmtpStartTlsRequiredKey = "mail.smtp.starttls.required"
 	val SmtpTimeoutKey = "mail.smtp.timeout"
 	val StoreProtocolKey = "mail.store.protocol"
 	val TransportProtocolKey = "mail.transport.protocol"
@@ -85,6 +87,23 @@ case class SmtpUser(user: String) extends Prop {
 	*/
 case class SmtpTimeout(timeout: Int) extends Prop {
 	override def convert = Seq(SmtpTimeoutKey -> timeout)
+}
+
+/**
+	* Represents the set of ''JavaMail'' properties `mail.smtp.starttls.enable`
+	* and `mail.smtp.starttls.required`. If called without specifying the parameters,
+	* `mail.smtp.starttls.enable` is set to `true` and `mail.smtp.starttls.required` to `false`.
+	*
+	* @param enable   If true, enables the use of the STARTTLS command (if supported by the server) to
+	*                 switch the connection to a TLS-protected connection before issuing any login
+	*                 commands. If not set, defaults to false.
+	* @param required If true, requires the use of the STARTTLS command. If the server doesn't
+	*                 support the STARTTLS command, or the command fails, the connect method will
+	*                 fail. If not set, defaults to false.
+	*/
+case class SmtpStartTls(enable: Boolean = true, required: Boolean = false) extends Prop {
+	override def convert = Seq(
+		SmtpStartTlsEnableKey -> enable.toString, SmtpStartTlsRequiredKey -> required.toString)
 }
 
 /**
