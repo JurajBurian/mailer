@@ -23,6 +23,9 @@ trait SessionFactory {
 	def session(credentials: Option[(String, String)] = None): Session
 }
 
+/**
+	*
+	*/
 object SessionFactory {
 	def apply() = new SessionFactory {
 		override def append(p: Prop): SessionFactory = {

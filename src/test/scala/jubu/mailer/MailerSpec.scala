@@ -22,7 +22,7 @@ class MailerSpec extends FlatSpec with Matchers {
 		val session = (SmtpAddress(SmtpHost, SmtpPort) :: SessionFactory()).session()
 
 		val content = new Content().text("Hello there!")
-		Mailer.build(session).send(new Msg(
+		Mailer(session).send(Msg(
 			from = new InternetAddress(SenderAddress),
 			subject = MessageSubject,
 			content = content,

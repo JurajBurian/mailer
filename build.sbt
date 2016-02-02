@@ -8,6 +8,17 @@ version := "1.0.0"
 
 description := ""
 
+scalacOptions := Seq(
+	"-encoding", "UTF-8",
+	"-unchecked",
+	"-deprecation",
+	"-feature",
+	"-Xfatal-warnings",
+	"-Xlint",
+	"-Yrangepos",
+	"-language:postfixOps"
+)
+
 libraryDependencies ++= Seq(
 	"javax.mail" % "mail" % "1.4.7",
 	"de.saly" % "javamail-mock2-fullmock" % "0.5-beta3" % "test",

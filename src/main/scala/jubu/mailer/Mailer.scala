@@ -46,10 +46,13 @@ case class Msg(from: InternetAddress,
 }
 
 trait Mailer {
+	@throws[MessagingException]
 	def connect(): Mailer
 
+	@throws[MessagingException]
 	def send(msg: Msg): Mailer
 
+	@throws[MessagingException]
 	def close(): Mailer
 }
 
@@ -58,7 +61,7 @@ trait Mailer {
 	* @author jubu
 	*/
 object Mailer extends MailKeys {
-	def build(session: Session, transport: Option[Transport] = None) = new Mailer {
+	def apply(session: Session, transport: Option[Transport] = None) = new Mailer {
 
 
 		val trt = transport match {
@@ -81,7 +84,6 @@ object Mailer extends MailKeys {
 		@throws[MessagingException]
 		override def send(msg: Msg): Mailer = {
 			connect()
-			msg.content.parts
 			val message = new MimeMessage(session)
 			msg.to.map(message.addRecipient(Message.RecipientType.TO, _))
 			msg.cc.map(message.addRecipient(Message.RecipientType.CC, _))
