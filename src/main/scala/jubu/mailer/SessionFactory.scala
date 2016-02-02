@@ -6,25 +6,48 @@ import javax.mail.{Authenticator, PasswordAuthentication, Session}
 import scala.annotation.tailrec
 
 /**
+	* Represents the factory, used to create ''JavaMail'' session with selected properties.
+	*
 	* @author jubu
 	*/
 trait SessionFactory {
+	/**
+		* Adds the given ''JavaMail'' property to the set of existing properties.
+		*
+		* @param p property to add
+		* @return instance of [[jubu.mailer.SessionFactory]] itself
+		*/
 	def append(p: Prop): SessionFactory
 
+	/**
+		* Adds the given ''JavaMail'' property to the set of existing properties (used usually as the
+		* prepend operator).
+		*
+		* @param p property to add
+		* @return instance of [[jubu.mailer.SessionFactory]] itself
+		*/
 	def ::(p: Prop): SessionFactory = append(p)
 
+	/**
+		* Adds the given ''JavaMail'' property to the set of existing properties (used usually as the
+		* append operator).
+		*
+		* @param p property to add
+		* @return instance of [[jubu.mailer.SessionFactory]] itself
+		*/
 	def +(p: Prop): SessionFactory = ::(p)
 
 	/**
+		* Returns the created ''JavaMail'' session, optionally credentials can be provided if required.
 		*
-		* @param credentials (username,password) pair
+		* @param credentials credentials, represented as the pair of (username, password), optional
 		* @return Plain mail Session
 		*/
 	def session(credentials: Option[(String, String)] = None): Session
 }
 
 /**
-	*
+	* Provides set of operations needed to create [[jubu.mailer.SessionFactory]] instance.
 	*/
 object SessionFactory {
 	def apply() = new SessionFactory {
@@ -38,8 +61,9 @@ object SessionFactory {
 					walk(p.prev, properties)
 				}
 			}
-			case class impl(prev: impl, val prop:Prop) extends SessionFactory {
+			case class impl(prev: impl, val prop: Prop) extends SessionFactory {
 				override def append(p: Prop): SessionFactory = new impl(this, p)
+
 				def properties(): Properties = {
 					walk(this)
 				}
