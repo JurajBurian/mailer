@@ -20,9 +20,10 @@ case class Content(parts: MimeBodyPart*) {
 		* Appends the given part (represented by `MimeBodyPart` instance) to the existing content parts.
 		*
 		* @param parts content part to append
-		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
+		*         content part
 		*/
-	def append(parts: MimeBodyPart*) = Content((this.parts ++ parts): _*)
+	def append(parts: MimeBodyPart*) = Content(this.parts ++ parts: _*)
 
 	/**
 		* Appends the given string as the text content part (defaults to ''text/plain'').
@@ -31,7 +32,8 @@ case class Content(parts: MimeBodyPart*) {
 		* @param charset charset of the given text (defaults to ''UTF-8'')
 		* @param subtype defines subtype of the ''MIME type'' (the part after the slash), defaults
 		*                to ''UTF-8''
-		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
+		*         content part
 		*/
 	def text(text: String, charset: String = "UTF-8", subtype: String = "plain"): Content = {
 		val part = new MimeBodyPart()
@@ -44,7 +46,8 @@ case class Content(parts: MimeBodyPart*) {
 		*
 		* @param html    ''HTML'' string to append
 		* @param charset charset of the given ''HTML'' string (defaults to ''UTF-8'')
-		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
+		*         content part
 		*/
 	def html(html: String, charset: String = "UTF-8"): Content = {
 		val part = new MimeBodyPart()
@@ -58,10 +61,13 @@ case class Content(parts: MimeBodyPart*) {
 		* @param file      file to attach
 		* @param name      name of the attachment (optional, defaults to the given file name)
 		* @param contentId the "Content-ID" header field of this body part
-		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
+		*         content part
 		*/
 
-	def attachFile(file: File, name: Option[String] = None, contentId: Option[String] = None): Content = {
+	def attachFile(file: File, name: Option[String] = None,
+								 contentId: Option[String] = None): Content = {
+
 		val part = new MimeBodyPart()
 		part.setDataHandler(new DataHandler(new FileDataSource(file)))
 		part.setFileName(name.getOrElse(file.getName))
@@ -77,9 +83,12 @@ case class Content(parts: MimeBodyPart*) {
 		* @param name      name of the attachment (optional)
 		* @param mimeType  ''MIME type'' of the attachment
 		* @param contentId the "Content-ID" header field of this body part
-		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
+		*         content part
 		*/
-	def attachBytes(bytes: Array[Byte], name: Option[String] = None, mimeType: String, contentId: Option[String] = None): Content = {
+	def attachBytes(bytes: Array[Byte], name: Option[String] = None, mimeType: String,
+									contentId: Option[String] = None): Content = {
+
 		val part = new MimeBodyPart()
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
 		contentId.foreach(part.setContentID)
@@ -92,9 +101,9 @@ case class Content(parts: MimeBodyPart*) {
 		* instead of the `#attachBytes` method if you have already ''Base64-encoded'' data and you
 		* want to avoid ''JavaMail'' encoding it again.
 		*
-		* @param data ''Base64-encoded'' data
-		* @param name name of the attachment (optional)
-		* @param mimeType ''MIME type'' of the attachment
+		* @param data      ''Base64-encoded'' data
+		* @param name      name of the attachment (optional)
+		* @param mimeType  ''MIME type'' of the attachment
 		* @param contentId the `Content-ID` header field of this body part
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
@@ -125,7 +134,8 @@ case class Content(parts: MimeBodyPart*) {
 	*
 	* @param from       e-mail sender address
 	* @param subject    e-mail subject text
-	* @param content    e-mail content, represented by the instance of [[com.github.jurajburian.mailer.Content]] class
+	* @param content    e-mail content, represented by the instance of
+	*                   [[com.github.jurajburian.mailer.Content]] class
 	* @param to         set of e-mail receiver addresses
 	* @param cc         set of e-mail ''carbon copy'' receiver addresses
 	* @param bcc        set of e-mail ''blind carbon copy'' receiver addresses
@@ -216,9 +226,9 @@ object Mailer extends MailKeys {
 			import javax.mail.{Message => M}
 			connect()
 			val message = new MimeMessage(session)
-			msg.to.map(message.addRecipient(M.RecipientType.TO, _))
-			msg.cc.map(message.addRecipient(M.RecipientType.CC, _))
-			msg.bcc.map(message.addRecipient(M.RecipientType.BCC, _))
+			msg.to.foreach(message.addRecipient(M.RecipientType.TO, _))
+			msg.cc.foreach(message.addRecipient(M.RecipientType.CC, _))
+			msg.bcc.foreach(message.addRecipient(M.RecipientType.BCC, _))
 			message.setSubject(msg.subject)
 			message.setFrom(msg.from)
 			message.setContent(new MimeMultipart() {
