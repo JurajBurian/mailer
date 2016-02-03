@@ -3,7 +3,7 @@ package com.github.jurajburian.mailer
 import java.io.File
 import javax.activation.{DataHandler, FileDataSource}
 import javax.mail.{Transport, Session, MessagingException}
-import javax.mail.internet.{InternetAddress, MimeBodyPart, MimeMessage, MimeMultipart}
+import javax.mail.internet._
 import javax.mail.util.ByteArrayDataSource
 
 
@@ -88,6 +88,17 @@ case class Content(parts: MimeBodyPart*) {
 	}
 
 
+	def attachBase64(data: String, name: String, mimeType: String,
+									 contentId: Option[String] = None): Content = {
+
+		val part = new PreencodedMimeBodyPart("base64")
+		part.setDataHandler(new DataHandler(new ByteArrayDataSource(data, mimeType)))
+		part.setFileName(name)
+		contentId.map(part.setContentID)
+		append(part)
+	}
+
+
 
 	@throws[MessagingException]
 	def apply() = {
@@ -111,13 +122,13 @@ case class Content(parts: MimeBodyPart*) {
 	* @param replyToAll whether the new message will be addressed to all recipients of this message
 	*/
 case class Message(from: InternetAddress,
-                   subject: String,
-                   content: Content,
-                   to: Seq[InternetAddress] = Seq.empty[InternetAddress],
-                   cc: Seq[InternetAddress] = Seq.empty[InternetAddress],
-                   bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
-                   replyTo: Option[InternetAddress] = None,
-                   replyToAll: Option[Boolean] = None) {
+									 subject: String,
+									 content: Content,
+									 to: Seq[InternetAddress] = Seq.empty[InternetAddress],
+									 cc: Seq[InternetAddress] = Seq.empty[InternetAddress],
+									 bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
+									 replyTo: Option[InternetAddress] = None,
+									 replyToAll: Option[Boolean] = None) {
 
 }
 
