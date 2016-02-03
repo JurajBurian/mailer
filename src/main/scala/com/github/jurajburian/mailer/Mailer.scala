@@ -80,13 +80,13 @@ case class Content(parts: MimeBodyPart*) {
 		* original file object is not available, only its array of bytes.
 		*
 		* @param bytes     array of bytes representing the attachment
-		* @param name      name of the attachment (optional)
 		* @param mimeType  ''MIME type'' of the attachment
-		* @param contentId the "Content-ID" header field of this body part
+		* @param name      name of the attachment (optional)
+		* @param contentId the "Content-ID" header field of this body part (optional)
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
 		*/
-	def attachBytes(bytes: Array[Byte], name: Option[String] = None, mimeType: String,
+	def attachBytes(bytes: Array[Byte], mimeType: String, name: Option[String] = None,
 									contentId: Option[String] = None): Content = {
 
 		val part = new MimeBodyPart()
@@ -102,14 +102,14 @@ case class Content(parts: MimeBodyPart*) {
 		* want to avoid ''JavaMail'' encoding it again.
 		*
 		* @param data      ''Base64-encoded'' data
-		* @param name      name of the attachment (optional)
 		* @param mimeType  ''MIME type'' of the attachment
-		* @param contentId the `Content-ID` header field of this body part
+		* @param name      name of the attachment (optional)
+		* @param contentId the `Content-ID` header field of this body part (optional)
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
 		* @see http://www.oracle.com/technetwork/java/faq-135477.html#preencoded
 		*/
-	def attachBase64(data: String, name: Option[String] = None, mimeType: String,
+	def attachBase64(data: String, mimeType: String, name: Option[String] = None,
 									 contentId: Option[String] = None): Content = {
 
 		val part = new PreencodedMimeBodyPart("base64")
