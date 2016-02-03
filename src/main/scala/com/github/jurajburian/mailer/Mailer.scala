@@ -2,7 +2,7 @@ package com.github.jurajburian.mailer
 
 import java.io.File
 import javax.activation.{DataHandler, FileDataSource}
-import javax.mail._
+import javax.mail.{Transport, Session, MessagingException}
 import javax.mail.internet.{InternetAddress, MimeBodyPart, MimeMessage, MimeMultipart}
 import javax.mail.util.ByteArrayDataSource
 
@@ -191,11 +191,12 @@ object Mailer extends MailKeys {
 
 		@throws[MessagingException]
 		override def send(msg: Message): Mailer = {
+			import javax.mail.{Message => M}
 			connect()
 			val message = new MimeMessage(session)
-			msg.to.map(message.addRecipient(Message.RecipientType.TO, _))
-			msg.cc.map(message.addRecipient(Message.RecipientType.CC, _))
-			msg.bcc.map(message.addRecipient(Message.RecipientType.BCC, _))
+			msg.to.map(message.addRecipient(M.RecipientType.TO, _))
+			msg.cc.map(message.addRecipient(M.RecipientType.CC, _))
+			msg.bcc.map(message.addRecipient(M.RecipientType.BCC, _))
 			message.setSubject(msg.subject)
 			message.setFrom(msg.from)
 			message.setContent(new MimeMultipart() {
