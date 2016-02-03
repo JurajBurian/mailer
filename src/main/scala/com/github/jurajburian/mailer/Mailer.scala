@@ -55,17 +55,17 @@ case class Content(parts: MimeBodyPart*) {
 	/**
 		* Appends the given file as the e-mail message attachment.
 		*
-		* @param file file to attach
-		* @param name name of the attachment (optional, defaults to the given file name)
+		* @param file      file to attach
+		* @param name      name of the attachment (optional, defaults to the given file name)
 		* @param contentId the "Content-ID" header field of this body part
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
 
-	def attachFile(file: File, name: Option[String] = None, contentId:Option[String] = None): Content = {
+	def attachFile(file: File, name: Option[String] = None, contentId: Option[String] = None): Content = {
 		val part = new MimeBodyPart()
 		part.setDataHandler(new DataHandler(new FileDataSource(file)))
 		part.setFileName(name.getOrElse(file.getName))
-		contentId.map(part.setContentID)
+		contentId.foreach(part.setContentID)
 		append(part)
 	}
 
@@ -73,31 +73,42 @@ case class Content(parts: MimeBodyPart*) {
 		* Appends the given array of bytes as the e-mail message attachment. Useful especially when the
 		* original file object is not available, only its array of bytes.
 		*
-		* @param bytes    array of bytes representing the attachment
-		* @param name     name of the attachment
-		* @param mimeType ''MIME type'' of the attachment
+		* @param bytes     array of bytes representing the attachment
+		* @param name      name of the attachment (optional)
+		* @param mimeType  ''MIME type'' of the attachment
 		* @param contentId the "Content-ID" header field of this body part
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
-	def attachBytes(bytes: Array[Byte], name: String, mimeType: String, contentId:Option[String] = None): Content = {
+	def attachBytes(bytes: Array[Byte], name: Option[String] = None, mimeType: String, contentId: Option[String] = None): Content = {
 		val part = new MimeBodyPart()
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
-		part.setFileName(name)
-		contentId.map(part.setContentID)
+		contentId.foreach(part.setContentID)
 		append(part)
 	}
 
 
-	def attachBase64(data: String, name: String, mimeType: String,
+	/**
+		* Appends the given string of ''Base64-encoded'' data as the e-mail message attachment. Use
+		* instead of the `#attachBytes` method if you have already ''Base64-encoded'' data and you
+		* want to avoid ''JavaMail'' encoding it again.
+		*
+		* @param data ''Base64-encoded'' data
+		* @param name name of the attachment (optional)
+		* @param mimeType ''MIME type'' of the attachment
+		* @param contentId the `Content-ID` header field of this body part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
+		*         content part
+		* @see http://www.oracle.com/technetwork/java/faq-135477.html#preencoded
+		*/
+	def attachBase64(data: String, name: Option[String] = None, mimeType: String,
 									 contentId: Option[String] = None): Content = {
 
 		val part = new PreencodedMimeBodyPart("base64")
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(data, mimeType)))
-		part.setFileName(name)
-		contentId.map(part.setContentID)
+		name.foreach(part.setFileName)
+		contentId.foreach(part.setContentID)
 		append(part)
 	}
-
 
 
 	@throws[MessagingException]
