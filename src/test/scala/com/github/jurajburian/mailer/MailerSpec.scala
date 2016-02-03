@@ -1,9 +1,8 @@
-package jubu.mailer
+package com.github.jurajburian.mailer
 
-import javax.mail.internet.{MimeMultipart, InternetAddress}
+import javax.mail.internet.{InternetAddress, MimeMultipart}
 import javax.mail.{Folder, Store, internet}
 
-import de.saly.javamail.mock2.{MailboxFolder, MockMailbox}
 import org.scalatest._
 
 /**

@@ -1,9 +1,10 @@
-package jubu.mailer
+package com.github.jurajburian.mailer
 
 import java.util.Properties
-import javax.mail.{Authenticator, PasswordAuthentication, Session}
+import javax.mail.{PasswordAuthentication, Authenticator, Session}
 
 import scala.annotation.tailrec
+
 
 /**
 	* Represents the factory, used to create ''JavaMail'' session with selected properties.
@@ -15,7 +16,7 @@ trait SessionFactory {
 		* Adds the given ''JavaMail'' property to the set of existing properties.
 		*
 		* @param p property to add
-		* @return instance of [[jubu.mailer.SessionFactory]] itself
+		* @return instance of [[com.github.jurajburian.mailer.SessionFactory]] itself
 		*/
 	def append(p: Prop): SessionFactory
 
@@ -24,7 +25,7 @@ trait SessionFactory {
 		* prepend operator).
 		*
 		* @param p property to add
-		* @return instance of [[jubu.mailer.SessionFactory]] itself
+		* @return instance of [[com.github.jurajburian.mailer.SessionFactory]] itself
 		*/
 	def ::(p: Prop): SessionFactory = append(p)
 
@@ -33,7 +34,7 @@ trait SessionFactory {
 		* append operator).
 		*
 		* @param p property to add
-		* @return instance of [[jubu.mailer.SessionFactory]] itself
+		* @return instance of [[com.github.jurajburian.mailer.SessionFactory]] itself
 		*/
 	def +(p: Prop): SessionFactory = ::(p)
 
@@ -47,7 +48,7 @@ trait SessionFactory {
 }
 
 /**
-	* Provides set of operations needed to create [[jubu.mailer.SessionFactory]] instance.
+	* Provides set of operations needed to create [[com.github.jurajburian.mailer.SessionFactory]] instance.
 	*/
 object SessionFactory {
 	def apply() = new SessionFactory {

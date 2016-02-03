@@ -6,7 +6,7 @@ A thin wrapper over JavaMail library written in the Scala language.
 ## Usage
 ###At first, build plain Java Mail Session:  
 ```Scala
-import jubu.mailer._
+import com.github.jurajburian.mailer._
 val session = (SmtpAddress("smtp.gmail.com", 587) :: SessionFactory()).session(Some("user@gmail.com"-> "password"))
 //or for example:
 val session2 = (SessionFactory() + (SmtpAddress("smtp.gmail.com", 587)).session()

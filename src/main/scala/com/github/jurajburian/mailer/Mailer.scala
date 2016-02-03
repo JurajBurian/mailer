@@ -1,4 +1,4 @@
-package jubu.mailer
+package com.github.jurajburian.mailer
 
 import java.io.File
 import javax.activation.{FileDataSource, DataHandler}
@@ -20,7 +20,7 @@ case class Content(parts: MimeBodyPart*) {
 		* Appends the given part (represented by `MimeBodyPart` instance) to the existing content parts.
 		*
 		* @param parts content part to append
-		* @return instance of the [[jubu.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
 	def append(parts: MimeBodyPart*) = Content((this.parts ++ parts): _*)
 
@@ -31,7 +31,7 @@ case class Content(parts: MimeBodyPart*) {
 		* @param charset charset of the given text (defaults to ''UTF-8'')
 		* @param subtype defines subtype of the ''MIME type'' (the part after the slash), defaults
 		*                to ''UTF-8''
-		* @return instance of the [[jubu.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
 	def text(text: String, charset: String = "UTF-8", subtype: String = "plain"): Content = {
 		val part = new MimeBodyPart()
@@ -44,7 +44,7 @@ case class Content(parts: MimeBodyPart*) {
 		*
 		* @param html    ''HTML'' string to append
 		* @param charset charset of the given ''HTML'' string (defaults to ''UTF-8'')
-		* @return instance of the [[jubu.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
 	def html(html: String, charset: String = "UTF-8"): Content = {
 		val part = new MimeBodyPart()
@@ -57,7 +57,7 @@ case class Content(parts: MimeBodyPart*) {
 		*
 		* @param file file to attach
 		* @param name name of the attachment (optional, defaults to the given file name)
-		* @return instance of the [[jubu.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
 	def attachFile(file: File, name: String = null): Content = {
 		val part = new MimeBodyPart()
@@ -73,7 +73,7 @@ case class Content(parts: MimeBodyPart*) {
 		* @param bytes    array of bytes representing the attachment
 		* @param name     name of the attachment
 		* @param mimeType ''MIME type'' of the attachment
-		* @return instance of the [[jubu.mailer.Content]] class with appended content part
+		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
 	def attachBytes(bytes: Array[Byte], name: String, mimeType: String): Content = {
 		val part = new MimeBodyPart()
@@ -96,7 +96,7 @@ case class Content(parts: MimeBodyPart*) {
 	*
 	* @param from       e-mail sender address
 	* @param subject    e-mail subject text
-	* @param content    e-mail content, represented by the instance of [[jubu.mailer.Content]] class
+	* @param content    e-mail content, represented by the instance of [[com.github.jurajburian.mailer.Content]] class
 	* @param to         set of e-mail receiver addresses
 	* @param cc         set of e-mail ''carbon copy'' receiver addresses
 	* @param bcc        set of e-mail ''blind carbon copy'' receiver addresses
@@ -116,14 +116,14 @@ case class Msg(from: InternetAddress,
 
 /**
 	* Represents the ''Mailer'' itself, with methods for opening/closing the connection and sending
-	* the message ([[jubu.mailer.Msg]])
+	* the message ([[com.github.jurajburian.mailer.Msg]])
 	*/
 trait Mailer {
 
 	/**
 		* Creates new transport connection.
 		*
-		* @return instance of the [[jubu.mailer.Mailer]] itself
+		* @return instance of the [[com.github.jurajburian.mailer.Mailer]] itself
 		*/
 	@throws[MessagingException]
 	def connect(): Mailer
@@ -132,7 +132,7 @@ trait Mailer {
 		* Sends the given message.
 		*
 		* @param msg message to send
-		* @return instance of the [[jubu.mailer.Mailer]] itself
+		* @return instance of the [[com.github.jurajburian.mailer.Mailer]] itself
 		*/
 	@throws[MessagingException]
 	def send(msg: Msg): Mailer
@@ -140,7 +140,7 @@ trait Mailer {
 	/**
 		* Closes the previously opened transport connection.
 		*
-		* @return instance of the [[jubu.mailer.Mailer]] itself
+		* @return instance of the [[com.github.jurajburian.mailer.Mailer]] itself
 		*/
 	@throws[MessagingException]
 	def close(): Mailer

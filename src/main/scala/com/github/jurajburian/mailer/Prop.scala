@@ -1,4 +1,4 @@
-package jubu.mailer
+package com.github.jurajburian.mailer
 
 trait MailKeys {
 	val DebugKey = "mail.debug"
