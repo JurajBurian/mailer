@@ -1,7 +1,7 @@
 package com.github.jurajburian.mailer
 
 import java.io.File
-import javax.activation.{FileDataSource, DataHandler}
+import javax.activation.{DataHandler, FileDataSource}
 import javax.mail._
 import javax.mail.internet.{InternetAddress, MimeBodyPart, MimeMessage, MimeMultipart}
 import javax.mail.util.ByteArrayDataSource
@@ -57,12 +57,15 @@ case class Content(parts: MimeBodyPart*) {
 		*
 		* @param file file to attach
 		* @param name name of the attachment (optional, defaults to the given file name)
+		* @param contentId the "Content-ID" header field of this body part
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
-	def attachFile(file: File, name: String = null): Content = {
+
+	def attachFile(file: File, name: Option[String] = None, contentId:Option[String] = None): Content = {
 		val part = new MimeBodyPart()
 		part.setDataHandler(new DataHandler(new FileDataSource(file)))
-		part.setFileName(Option(name).getOrElse(file.getName))
+		part.setFileName(name.getOrElse(file.getName))
+		contentId.map(part.setContentID)
 		append(part)
 	}
 
@@ -73,14 +76,18 @@ case class Content(parts: MimeBodyPart*) {
 		* @param bytes    array of bytes representing the attachment
 		* @param name     name of the attachment
 		* @param mimeType ''MIME type'' of the attachment
+		* @param contentId the "Content-ID" header field of this body part
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended content part
 		*/
-	def attachBytes(bytes: Array[Byte], name: String, mimeType: String): Content = {
+	def attachBytes(bytes: Array[Byte], name: String, mimeType: String, contentId:Option[String] = None): Content = {
 		val part = new MimeBodyPart()
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
 		part.setFileName(name)
+		contentId.map(part.setContentID)
 		append(part)
 	}
+
+
 
 	@throws[MessagingException]
 	def apply() = {
@@ -103,20 +110,20 @@ case class Content(parts: MimeBodyPart*) {
 	* @param replyTo    address used to reply this message (optional)
 	* @param replyToAll whether the new message will be addressed to all recipients of this message
 	*/
-case class Msg(from: InternetAddress,
-							 subject: String,
-							 content: Content,
-							 to: Seq[InternetAddress] = Seq.empty[InternetAddress],
-							 cc: Seq[InternetAddress] = Seq.empty[InternetAddress],
-							 bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
-							 replyTo: Option[InternetAddress] = None,
-							 replyToAll: Option[Boolean] = None) {
+case class Message(from: InternetAddress,
+                   subject: String,
+                   content: Content,
+                   to: Seq[InternetAddress] = Seq.empty[InternetAddress],
+                   cc: Seq[InternetAddress] = Seq.empty[InternetAddress],
+                   bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
+                   replyTo: Option[InternetAddress] = None,
+                   replyToAll: Option[Boolean] = None) {
 
 }
 
 /**
 	* Represents the ''Mailer'' itself, with methods for opening/closing the connection and sending
-	* the message ([[com.github.jurajburian.mailer.Msg]])
+	* the message ([[com.github.jurajburian.mailer.Message]])
 	*/
 trait Mailer {
 
@@ -135,7 +142,7 @@ trait Mailer {
 		* @return instance of the [[com.github.jurajburian.mailer.Mailer]] itself
 		*/
 	@throws[MessagingException]
-	def send(msg: Msg): Mailer
+	def send(msg: Message): Mailer
 
 	/**
 		* Closes the previously opened transport connection.
@@ -183,7 +190,7 @@ object Mailer extends MailKeys {
 		}
 
 		@throws[MessagingException]
-		override def send(msg: Msg): Mailer = {
+		override def send(msg: Message): Mailer = {
 			connect()
 			val message = new MimeMessage(session)
 			msg.to.map(message.addRecipient(Message.RecipientType.TO, _))

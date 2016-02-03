@@ -30,7 +30,7 @@ class MailerSpec extends FlatSpec with Matchers {
 
 		// send e-mail using the 'javamail-mock2' mock
 		val content = new Content().text(MessageContentText).html(MessageContentHtml)
-		Mailer(session).send(Msg(
+		Mailer(session).send(Message(
 			from = new InternetAddress(SenderAddress),
 			subject = MessageSubject,
 			content = content,
