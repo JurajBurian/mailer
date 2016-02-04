@@ -2,8 +2,13 @@
 ![alt tag](/doc/logo.png?raw=true)
 A thin wrapper over JavaMail library written in the Scala language. 
 `Mailer`'s aim is to be used in situations when it is necessary to send multiple mails efficiently. `Mailer` achieves this by creating a single instance of `javax.mail.Session`, getting and opening a javax.mail.Transport instance, and sending a bulk of emails through it.
+
+## API documentation
+_ScalaDoc_ documentation is available online for the following _Mailer_ versions:
+* [version 1.0.x](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.package)
+
 ## Install
-Mailer is available forScala 2.10 and 2.11
+Mailer is available for Scala 2.10 and 2.11
 To get started with SBT, add dependency to your build.sbt file:
 ```Scala
 libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.0.0" withSources
