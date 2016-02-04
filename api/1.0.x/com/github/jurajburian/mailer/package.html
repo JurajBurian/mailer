@@ -1,0 +1,485 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>mailer - com.github.jurajburian.mailer</title>
+          <meta name="description" content="mailer - com.github.jurajburian.mailer" />
+          <meta name="keywords" content="mailer com.github.jurajburian.mailer" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../../../lib/template.js"></script>
+      <script type="text/javascript" src="../../../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../../../index.html';
+            var hash = 'com.github.jurajburian.mailer.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img alt="Package" src="../../../../lib/package_big.png" />
+        <p id="owner"><a href="../../../package.html" class="extype" name="com">com</a>.<a href="../../package.html" class="extype" name="com.github">github</a>.<a href="../package.html" class="extype" name="com.github.jurajburian">jurajburian</a></p>
+        <h1>mailer</h1><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">mailer</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="com.github.jurajburian.mailer.Content" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ContentextendsProductwithSerializable"></a>
+      <a id="Content:Content"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Content.html"><span class="name">Content</span></a><span class="params">(<span name="parts">parts: <span class="extype" name="javax.mail.internet.MimeBodyPart">MimeBodyPart</span>*</span>)</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@ContentextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the content of the e-mail message, composed of individual <code>MimeBodyPart</code> instances.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the content of the e-mail message, composed of individual <code>MimeBodyPart</code> instances.
+For easier use, helper methods to add specific content are available, such as <code>html()</code> for
+adding <i>HTML</i> or <code>attachFile()</code> to add file attachment.
+</p></div><dl class="paramcmts block"><dt class="param">parts</dt><dd class="cmt"><p>parts of the message content (represented by <code>MimeBodyPart</code> instances)</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.Debug" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="DebugextendsPropwithProductwithSerializable"></a>
+      <a id="Debug:Debug"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Debug.html"><span class="name">Debug</span></a><span class="params">(<span name="debug">debug: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">false</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@DebugextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Enables the debug mode.</p><div class="fullcomment"><div class="comment cmt"><p>Enables the debug mode.
+</p></div><dl class="paramcmts block"><dt class="param">debug</dt><dd class="cmt"><p>The initial debug mode. Default is false.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.Host" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="HostextendsPropwithProductwithSerializable"></a>
+      <a id="Host:Host"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Host.html"><span class="name">Host</span></a><span class="params">(<span name="host">host: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@HostextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.host</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.host</code>.
+</p></div><dl class="paramcmts block"><dt class="param">host</dt><dd class="cmt"><p>The default host name of the mail server for both Stores and Transports. Used if
+            the <code>mail.protocol.host</code> property (set by <a href="SmtpAddress.html" class="extype" name="com.github.jurajburian.mailer.SmtpAddress">SmtpAddress</a>)isn't set.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.Mailer" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="MailerextendsAnyRef"></a>
+      <a id="Mailer:Mailer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Mailer.html"><span class="name">Mailer</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@MailerextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>Mailer</i> itself, with methods for opening/closing the connection and sending
+the message (<a href="Message.html" class="extype" name="com.github.jurajburian.mailer.Message">com.github.jurajburian.mailer.Message</a>)
+</p>
+    </li><li name="com.github.jurajburian.mailer.Message" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MessageextendsProductwithSerializable"></a>
+      <a id="Message:Message"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Message.html"><span class="name">Message</span></a><span class="params">(<span name="from">from: <span class="extype" name="javax.mail.internet.InternetAddress">InternetAddress</span></span>, <span name="subject">subject: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="content">content: <a href="Content.html" class="extype" name="com.github.jurajburian.mailer.Content">Content</a></span>, <span name="to">to: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="javax.mail.internet.InternetAddress">InternetAddress</span>] = <span class="symbol">Seq.empty[InternetAddress]</span></span>, <span name="cc">cc: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="javax.mail.internet.InternetAddress">InternetAddress</span>] = <span class="symbol">Seq.empty[InternetAddress]</span></span>, <span name="bcc">bcc: <span class="extype" name="scala.Seq">Seq</span>[<span class="extype" name="javax.mail.internet.InternetAddress">InternetAddress</span>] = <span class="symbol">Seq.empty[InternetAddress]</span></span>, <span name="replyTo">replyTo: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Option" class="extype" target="_top">Option</a>[<span class="extype" name="javax.mail.internet.InternetAddress">InternetAddress</span>] = <span class="symbol">None</span></span>, <span name="replyToAll">replyToAll: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Option" class="extype" target="_top">Option</a>[<a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Boolean" class="extype" target="_top">Boolean</a>] = <span class="symbol">None</span></span>)</span><span class="result"> extends <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@MessageextendsProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the e-mail message itself.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the e-mail message itself.
+</p></div><dl class="paramcmts block"><dt class="param">from</dt><dd class="cmt"><p>e-mail sender address</p></dd><dt class="param">subject</dt><dd class="cmt"><p>e-mail subject text</p></dd><dt class="param">content</dt><dd class="cmt"><p>e-mail content, represented by the instance of
+                  <a href="Content.html" class="extype" name="com.github.jurajburian.mailer.Content">com.github.jurajburian.mailer.Content</a> class</p></dd><dt class="param">to</dt><dd class="cmt"><p>set of e-mail receiver addresses</p></dd><dt class="param">cc</dt><dd class="cmt"><p>set of e-mail <i>carbon copy</i> receiver addresses</p></dd><dt class="param">bcc</dt><dd class="cmt"><p>set of e-mail <i>blind carbon copy</i> receiver addresses</p></dd><dt class="param">replyTo</dt><dd class="cmt"><p>address used to reply this message (optional)</p></dd><dt class="param">replyToAll</dt><dd class="cmt"><p>whether the new message will be addressed to all recipients of this message</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.MimeAddressStrict" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="MimeAddressStrictextendsPropwithProductwithSerializable"></a>
+      <a id="MimeAddressStrict:MimeAddressStrict"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="MimeAddressStrict.html"><span class="name">MimeAddressStrict</span></a><span class="params">(<span name="mimeAddressStrict">mimeAddressStrict: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@MimeAddressStrictextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.mime.address.strict</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.mime.address.strict</code>.
+</p></div><dl class="paramcmts block"><dt class="param">mimeAddressStrict</dt><dd class="cmt"><p>The MimeMessage class uses the InternetAddress method parseHeader to
+                         parse headers in messages. This property controls the strict flag
+                         passed to the parseHeader method. The default is true.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.Prop" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="PropextendsAnyRef"></a>
+      <a id="Prop:Prop"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="Prop.html"><span class="name">Prop</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@PropextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the set of one or more <i>JavaMail</i> properties.</p>
+    </li><li name="com.github.jurajburian.mailer.Property" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="PropertyextendsPropwithProductwithSerializable"></a>
+      <a id="Property:Property"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Property.html"><span class="name">Property</span></a><span class="params">(<span name="key">key: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="value">value: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@PropertyextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">General property, allowing to add any <i>JavaMail</i> property which is not directly supported by
+the <i>Mailer's</i> API.</p><div class="fullcomment"><div class="comment cmt"><p>General property, allowing to add any <i>JavaMail</i> property which is not directly supported by
+the <i>Mailer's</i> API.
+</p></div><dl class="paramcmts block"><dt class="param">key</dt><dd class="cmt"><p>property key</p></dd><dt class="param">value</dt><dd class="cmt"><p>property value</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.SessionFactory" visbl="pub" data-isabs="true" fullComment="no" group="Ungrouped">
+      <a id="SessionFactoryextendsAnyRef"></a>
+      <a id="SessionFactory:SessionFactory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">trait</span>
+      </span>
+      <span class="symbol">
+        <a href="SessionFactory.html"><span class="name">SessionFactory</span></a><span class="result"> extends <span class="extype" name="scala.AnyRef">AnyRef</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SessionFactoryextendsAnyRef" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the factory, used to create <i>JavaMail</i> session with selected properties.</p>
+    </li><li name="com.github.jurajburian.mailer.SmtpAddress" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SmtpAddressextendsPropwithProductwithSerializable"></a>
+      <a id="SmtpAddress:SmtpAddress"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SmtpAddress.html"><span class="name">SmtpAddress</span></a><span class="params">(<span name="host">host: <span class="extype" name="scala.Predef.String">String</span></span>, <span name="port">port: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a> = <span class="symbol">25</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SmtpAddressextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the combination of properties <code>mail.smtp.host</code> and <code>mail.smtp.form</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the combination of properties <code>mail.smtp.host</code> and <code>mail.smtp.form</code>.
+</p></div><dl class="paramcmts block"><dt class="param">host</dt><dd class="cmt"><p>The SMTP server to connect to.</p></dd><dt class="param">port</dt><dd class="cmt"><p>The SMTP server port to connect to, if the connect() method doesn't explicitly
+            specify one. Defaults to 25.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.SmtpConnectionTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SmtpConnectionTimeoutextendsPropwithProductwithSerializable"></a>
+      <a id="SmtpConnectionTimeout:SmtpConnectionTimeout"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SmtpConnectionTimeout.html"><span class="name">SmtpConnectionTimeout</span></a><span class="params">(<span name="timeout">timeout: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SmtpConnectionTimeoutextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.smtp.connectiontimeout</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.smtp.connectiontimeout</code>.
+</p></div><dl class="paramcmts block"><dt class="param">timeout</dt><dd class="cmt"><p>Socket connection timeout value in milliseconds. Default is infinite timeout.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.SmtpFrom" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SmtpFromextendsPropwithProductwithSerializable"></a>
+      <a id="SmtpFrom:SmtpFrom"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SmtpFrom.html"><span class="name">SmtpFrom</span></a><span class="params">(<span name="from">from: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SmtpFromextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.smtp.from</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.smtp.from</code>.
+</p></div><dl class="paramcmts block"><dt class="param">from</dt><dd class="cmt"><p>Email address to use for SMTP MAIL command. This sets the envelope return address.
+            Defaults to msg.getFrom() or InternetAddress.getLocalAddress().</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.SmtpStartTls" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SmtpStartTlsextendsPropwithProductwithSerializable"></a>
+      <a id="SmtpStartTls:SmtpStartTls"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SmtpStartTls.html"><span class="name">SmtpStartTls</span></a><span class="params">(<span name="enable">enable: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">true</span></span>, <span name="required">required: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Boolean" class="extype" target="_top">Boolean</a> = <span class="symbol">false</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SmtpStartTlsextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the set of <i>JavaMail</i> properties <code>mail.smtp.starttls.enable</code>
+and <code>mail.smtp.starttls.required</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the set of <i>JavaMail</i> properties <code>mail.smtp.starttls.enable</code>
+and <code>mail.smtp.starttls.required</code>. If called without specifying the parameters,
+<code>mail.smtp.starttls.enable</code> is set to <code>true</code> and <code>mail.smtp.starttls.required</code> to <code>false</code>.
+</p></div><dl class="paramcmts block"><dt class="param">enable</dt><dd class="cmt"><p>If true, enables the use of the STARTTLS command (if supported by the server) to
+                switch the connection to a TLS-protected connection before issuing any login
+                commands. If not set, defaults to false.</p></dd><dt class="param">required</dt><dd class="cmt"><p>If true, requires the use of the STARTTLS command. If the server doesn't
+                support the STARTTLS command, or the command fails, the connect method will
+                fail. If not set, defaults to false.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.SmtpTimeout" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SmtpTimeoutextendsPropwithProductwithSerializable"></a>
+      <a id="SmtpTimeout:SmtpTimeout"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SmtpTimeout.html"><span class="name">SmtpTimeout</span></a><span class="params">(<span name="timeout">timeout: <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Int" class="extype" target="_top">Int</a></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SmtpTimeoutextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.smtp.timeout</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.smtp.timeout</code>.
+</p></div><dl class="paramcmts block"><dt class="param">timeout</dt><dd class="cmt"><p>Socket I/O timeout value in milliseconds. Default is infinite timeout.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.SmtpUser" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SmtpUserextendsPropwithProductwithSerializable"></a>
+      <a id="SmtpUser:SmtpUser"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="SmtpUser.html"><span class="name">SmtpUser</span></a><span class="params">(<span name="user">user: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SmtpUserextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.smtp.user</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.smtp.user</code>.
+</p></div><dl class="paramcmts block"><dt class="param">user</dt><dd class="cmt"><p>The user name to use when connecting to mail servers using the specified protocol.
+            Overrides the mail.user property.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.StoreProtocol" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="StoreProtocolextendsPropwithProductwithSerializable"></a>
+      <a id="StoreProtocol:StoreProtocol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="StoreProtocol.html"><span class="name">StoreProtocol</span></a><span class="params">(<span name="protocol">protocol: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@StoreProtocolextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.store.protocol</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.store.protocol</code>.
+</p></div><dl class="paramcmts block"><dt class="param">protocol</dt><dd class="cmt"><p>Specifies the default message access protocol. The Session method getStore()
+                returns a Store object that implements this protocol. By default the first
+                Store provider in the configuration files is returned.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.TransportProtocol" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="TransportProtocolextendsPropwithProductwithSerializable"></a>
+      <a id="TransportProtocol:TransportProtocol"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="TransportProtocol.html"><span class="name">TransportProtocol</span></a><span class="params">(<span name="protocol">protocol: <span class="extype" name="scala.Predef.String">String</span> = <span class="symbol">&quot;smtp&quot;</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@TransportProtocolextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.transport.protocol</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.transport.protocol</code>.
+</p></div><dl class="paramcmts block"><dt class="param">protocol</dt><dd class="cmt"><p>Specifies the default message transport protocol. The Session method
+                getTransport() returns a Transport object that implements this protocol.
+                By default the first Transport provider in the configuration files is returned.</p></dd></dl></div>
+    </li><li name="com.github.jurajburian.mailer.User" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="UserextendsPropwithProductwithSerializable"></a>
+      <a id="User:User"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="User.html"><span class="name">User</span></a><span class="params">(<span name="user">user: <span class="extype" name="scala.Predef.String">String</span></span>)</span><span class="result"> extends <a href="Prop.html" class="extype" name="com.github.jurajburian.mailer.Prop">Prop</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Product" class="extype" target="_top">Product</a> with <a href="http://www.scala-lang.org/api/2.11.7/index.html#scala.Serializable" class="extype" target="_top">Serializable</a></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@UserextendsPropwithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Represents the <i>JavaMail</i> property <code>mail.user</code>.</p><div class="fullcomment"><div class="comment cmt"><p>Represents the <i>JavaMail</i> property <code>mail.user</code>.
+</p></div><dl class="paramcmts block"><dt class="param">user</dt><dd class="cmt"><p>The default user name to use when connecting to the mail server. Used if
+            the mail.protocol.user property isn't set.</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        <div id="values" class="values members">
+              <h3>Value Members</h3>
+              <ol><li name="com.github.jurajburian.mailer.Mailer" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="Mailer"></a>
+      <a id="Mailer:Mailer"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="Mailer$.html"><span class="name">Mailer</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@Mailer" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt"><i>Mailer</i> object providing default operations to handle the transport connection and send the
+e-mail message.</p>
+    </li><li name="com.github.jurajburian.mailer.SessionFactory" visbl="pub" data-isabs="false" fullComment="no" group="Ungrouped">
+      <a id="SessionFactory"></a>
+      <a id="SessionFactory:SessionFactory"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">object</span>
+      </span>
+      <span class="symbol">
+        <a href="SessionFactory$.html"><span class="name">SessionFactory</span></a>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../../../index.html#com.github.jurajburian.mailer.package@SessionFactory" title="Permalink" target="_top">
+        <img src="../../../../lib/permalink.png" alt="Permalink" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Provides set of operations needed to create <a href="SessionFactory.html" class="extype" name="com.github.jurajburian.mailer.SessionFactory">com.github.jurajburian.mailer.SessionFactory</a> instance.</p>
+    </li></ol>
+            </div>
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
