@@ -31,7 +31,7 @@ Use optional parameter `transport: Option[Transport]` in `Mailer.apply` method i
 ```Scala
 import javax.mail.internet.InternetAddress
 val content = new Content().text("Hello there!")
-val msg = Msg(
+val msg = Message(
       from = new InternetAddress(SenderAddress),
       subject = "my subject",
       content = content,
@@ -54,6 +54,6 @@ There is several methods how to create `Content`. If one can't find any appropri
 ### Changelog
 
 ###Contributors
-* Juraj Burian (@JurajBurian)
-* Vaclav Svejcar
-* Jan Nad
+* Juraj Burian ([@JurajBurian](https://github.com/JurajBurian))
+* Vaclav Svejcar ([@xwinus](https://github.com/xwinus))
+* Jan Nad ([@jannad](https://github.com/jannad))
