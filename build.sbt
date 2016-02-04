@@ -17,13 +17,47 @@ publishTo := {
 	if (isSnapshot.value)
 		Some("snapshots" at nexus + "content/repositories/snapshots")
 	else
-		Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+		Some("releases" at nexus + "service/local/staging/deploy/maven2")
 }
 
 // enable automatic linking to the external Scaladoc of managed dependencies
 autoAPIMappings := true
 
 publishArtifact in Test := false
+
+pomIncludeRepository := { _ => false }
+
+
+pomExtra := (
+	<url>https://github.com/JurajBurian/mailer</url>
+		<licenses>
+			<license>
+				<name>unlicense</name>
+				<url>http://unlicense.org/</url>
+				<distribution>repo</distribution>
+			</license>
+		</licenses>
+		<scm>
+			<url>https://github.com/jurajburian/mailer</url>
+			<connection>scm:git:https://github.com/jurajburian/mailer</connection>
+		</scm>
+		<developers>
+			<developer>
+				<id>JurajBurian</id>
+				<name>Juraj Burian</name>
+				<url>https://github.com/JurajBurian</url>
+			</developer>
+			<developer>
+				<id>xwinus</id>
+				<name>Vaclav Svejcar</name>
+				<url>https://github.com/xwinus</url>
+			</developer>
+			<developer>
+				<id>jannad</id>
+				<name>Jan Nad</name>
+				<url>https://github.com/jannad</url>
+			</developer>
+		</developers>)
 
 scalacOptions := Seq(
 	"-encoding", "UTF-8",
