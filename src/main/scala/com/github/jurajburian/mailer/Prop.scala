@@ -171,4 +171,16 @@ case class User(user: String) extends Prop {
 }
 
 
+/**
+	* General property, allowing to add any ''JavaMail'' property which is not directly supported by
+	* the ''Mailer's'' API.
+	*
+	* @param key   property key
+	* @param value property value
+	*/
+case class Property(key: String, value: String) extends Prop {
+	override def convert = Seq(key -> value)
+}
+
+
 
