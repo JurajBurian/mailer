@@ -9,6 +9,8 @@ There is actually an existing _JavaMail_-based e-mail sender library written in 
 1. __Reuse the [Transport](https://javamail.java.net/nonav/docs/api/javax/mail/Transport.html) instance__ - _Courier_ library creates new [Transport](https://javamail.java.net/nonav/docs/api/javax/mail/Transport.html) instance each time the message is sent. Since this may cause performance problems when sending a bulk of e-mails, _Mailer_ keeps the single instance of _Transport_ opened until the connection is explicitly closed.
 2. __Not forcing asynchronous sending using the  [Future](http://www.scala-lang.org/api/2.11.7/index.html#scala.concurrent.Future$)__ - _Courier_ library works in asynchronous manner using the [Future](http://www.scala-lang.org/api/2.11.7/index.html#scala.concurrent.Future$) and there is no way sending e-mail synchronously. _Mailer_, on the other hand, keeps the decision about synchronicity on the user, so it can be user for example very effectively in combination with the [Akka Actor framework](http://akka.io).
 
+_Remark:_ Multiple threads can use a Session. Since a Transport represents a connection to a mail server, and only a single thread can use the connection at a time, a Transport will synchronize access from multiple threads to maintain thread safety, but you'll really only want to use it from a single thread.
+
 ## API documentation
 _ScalaDoc_ documentation is available online for the following _Mailer_ versions:
 * [version 1.0.x](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.package)
@@ -43,18 +45,15 @@ val msg = Message(
       content = content,
       to = Seq(new InternetAddress(ReceiverAddress)))
 val mailer = Mailer(session)      
-// use try       
+// recomendations: use try       
 Try{mailer.send(msg)}
 // or  future 
 Future{mailer.send(msg)}
 ```
-There is several methods how to create `Content`. If one can't find any appropriate method, `Content` constructor is able to accept sequence of instances: `javax.mail.internet.MimeBodyPart` 
+There is several methods how to create `Content`. If one can't find any appropriate method, `Content` constructor is able to accept sequence of instances: `javax.mail.internet.MimeBodyPart`
+_Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingException`.   
 ###Close Session
 `Mailer` "session" should be closed. Call `mailer.close()` or `Try{mailer.close()}` for this purpose.
-
-###Todo 
-3. Complete `Prop` with more concrete properties
-4. more tests
 
 ### Changelog
 
