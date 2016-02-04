@@ -15,6 +15,8 @@ _Remark:_ Multiple threads can use a Session. Since a Transport represents a con
 _ScalaDoc_ documentation is available online for the following _Mailer_ versions:
 * [version 1.0.x](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.package)
 
+_Up-to-date_ documentation for the most actual version can be displayed anytime  [here](http://jurajburian.github.io/mailer/api/current).
+
 ## Install
 Mailer is available for Scala 2.10 and 2.11
 To get started with SBT, add dependency to your build.sbt file:
@@ -29,7 +31,7 @@ val session = (SmtpAddress("smtp.gmail.com", 587) :: SessionFactory()).session(S
 //or for example:
 val session2 = (SessionFactory() + (SmtpAddress("smtp.gmail.com", 587)).session()
 ```
-One can use more properties (instance of `Prop`) like `SmtpTimeout` concatenated by `::` or `+` operator. List of all available properties can be found in _ScalaDoc_, as the known subclasses of the [Prop trait](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.Prop).
+One can use more properties (instance of `Prop`) like `SmtpTimeout` concatenated by `::` or `+` operator. List of all available properties can be found in _ScalaDoc_, as the known subclasses of the [Prop trait](http://jurajburian.github.io/mailer/api/current/#com.github.jurajburian.mailer.Prop).
 
 ### 2/ Build `Mailer` instance
 ```Scala
