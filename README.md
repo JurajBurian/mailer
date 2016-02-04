@@ -3,7 +3,11 @@
 A thin wrapper over JavaMail library written in the Scala language. 
 `Mailer`'s aim is to be used in situations when it is necessary to send multiple mails efficiently. `Mailer` achieves this by creating a single instance of `javax.mail.Session`, getting and opening a javax.mail.Transport instance, and sending a bulk of emails through it.
 ## Install
-// TODO
+Mailer is available forScala 2.10 and 2.11
+To get started with SBT, add dependency to your build.sbt file:
+```Scala
+libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.0.0" withSources
+```
 ## Usage
 ###At first, build plain Java Mail Session:  
 ```Scala
@@ -38,8 +42,6 @@ There is several methods how to create `Content`. If one can't find any appropri
 `Mailer` "session" should be closed. Call `mailer.close()` or `Try{mailer.close()}` for this purpose.
 
 ###Todo 
-1. complete documentation with installation guide
-2. Complete `Content` with more "assemble" methods.
 3. Complete `Prop` with more concrete properties
 4. more tests
 5. add link to currier, and describe motivation why we created next wrapper

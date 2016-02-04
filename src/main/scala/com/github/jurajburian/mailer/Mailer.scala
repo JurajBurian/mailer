@@ -192,7 +192,10 @@ trait Mailer {
 	*
 	* @author jubu
 	*/
-object Mailer extends MailKeys {
+object Mailer {
+
+	import  MailKeys._
+
 	/**
 		* Sets the ''JavaMail'' session to the ''Mailer'' and returns the instance ready to send e-mail
 		* messages. Optionally, transport method can be explicitly specified.

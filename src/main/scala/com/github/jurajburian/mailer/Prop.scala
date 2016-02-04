@@ -1,6 +1,6 @@
 package com.github.jurajburian.mailer
 
-trait MailKeys {
+object MailKeys {
 	val DebugKey = "mail.debug"
 	val FromKey = "mail.from"
 	val HostKey = "mail.host"
@@ -19,10 +19,12 @@ trait MailKeys {
 
 }
 
+import MailKeys._
+
 /**
 	* Represents the set of one or more ''JavaMail'' properties.
 	*/
-trait Prop extends MailKeys {
+trait Prop {
 
 	/**
 		* Converts the set of properties into [[scala.Seq]].
