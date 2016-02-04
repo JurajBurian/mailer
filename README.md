@@ -12,10 +12,9 @@ There is actually an existing _JavaMail_ e-mail sender library written in _Scala
 _Remark:_ Multiple threads can use a Session. Since a Transport represents a connection to a mail server, and only a single thread can use the connection at a time, a Transport will synchronize access from multiple threads to maintain thread safety, but you'll really only want to use it from a single thread.
 
 ## API documentation
-_ScalaDoc_ documentation is available online for the following _Mailer_ versions:
-* [version 1.0.x](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.package)
+_ScalaDoc_ documentation is available online for the following _Mailer_ versions. _Up-to-date_ documentation for the most actual version can be displayed anytime [here](http://jurajburian.github.io/mailer/api/current/#com.github.jurajburian.mailer.package).
 
-_Up-to-date_ documentation for the most actual version can be displayed anytime  [here](http://jurajburian.github.io/mailer/api/current).
+* [version 1.0.x](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.package)
 
 ## Install
 Mailer is available for Scala 2.10 and 2.11
