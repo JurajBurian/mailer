@@ -1,7 +1,13 @@
 # Mailer
+
 ![alt tag](/doc/logo.png?raw=true)
 A thin wrapper over JavaMail library written in the Scala language. 
 `Mailer`'s aim is to be used in situations when it is necessary to send multiple mails efficiently. `Mailer` achieves this by creating a single instance of `javax.mail.Session`, getting and opening a javax.mail.Transport instance, and sending a bulk of emails through it.
+
+There is actually an existing _JavaMail_-based e-mail sender library written in _Scala_, called [Courier](https://github.com/softprops/courier). The main motivation of creating another _JavaMail_ wrapper was to solve the following issues of the existing _Courier_ library:
+
+1. __No [Transport](https://javamail.java.net/nonav/docs/api/javax/mail/Transport.html) reuse__ - _Courier_ library creates new [Transport](https://javamail.java.net/nonav/docs/api/javax/mail/Transport.html) instance each time the message is sent. Since this may cause performance problems when sending a bulk of e-mails, _Mailer_ keeps the single instance of _Transport_ opened until the connection is explicitly closed.
+2. __Forced usage of [Future](http://www.scala-lang.org/api/2.11.7/index.html#scala.concurrent.Future$)__ - _Courier_ library works in asynchronous manner using the [Future](http://www.scala-lang.org/api/2.11.7/index.html#scala.concurrent.Future$) and there is no way sending e-mail synchronously. _Mailer_, on the other hand, keeps the decision about synchronicity on the user, so it can be user for example very effectively in combination with the [Akka Actor framework](http://akka.io).
 
 ## API documentation
 _ScalaDoc_ documentation is available online for the following _Mailer_ versions:
@@ -49,7 +55,6 @@ There is several methods how to create `Content`. If one can't find any appropri
 ###Todo 
 3. Complete `Prop` with more concrete properties
 4. more tests
-5. add link to currier, and describe motivation why we created next wrapper
 
 ### Changelog
 
