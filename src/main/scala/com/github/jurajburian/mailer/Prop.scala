@@ -1,6 +1,6 @@
 package com.github.jurajburian.mailer
 
-object MailKeys {
+private object MailKeys {
 	val DebugKey = "mail.debug"
 	val FromKey = "mail.from"
 	val HostKey = "mail.host"
@@ -50,7 +50,7 @@ trait Prop {
 	*             specify one. Defaults to 25.
 	*/
 case class SmtpAddress(host: String, port: Int = 25) extends Prop {
-	override def convert = Seq(SmtpHostKey -> host, SmtpPortKey -> port)
+	override def convert = Seq(SmtpHostKey -> host, SmtpPortKey -> port.toString)
 }
 
 /**
@@ -59,7 +59,7 @@ case class SmtpAddress(host: String, port: Int = 25) extends Prop {
 	* @param timeout Socket connection timeout value in milliseconds. Default is infinite timeout.
 	*/
 case class SmtpConnectionTimeout(timeout: Int) extends Prop {
-	override def convert = Seq(SmtpConnectionTimeoutKey -> timeout)
+	override def convert = Seq(SmtpConnectionTimeoutKey -> timeout.toString)
 }
 
 /**
@@ -88,7 +88,7 @@ case class SmtpUser(user: String) extends Prop {
 	* @param timeout Socket I/O timeout value in milliseconds. Default is infinite timeout.
 	*/
 case class SmtpTimeout(timeout: Int) extends Prop {
-	override def convert = Seq(SmtpTimeoutKey -> timeout)
+	override def convert = Seq(SmtpTimeoutKey -> timeout.toString)
 }
 
 /**
