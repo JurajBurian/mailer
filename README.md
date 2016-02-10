@@ -60,6 +60,9 @@ _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingExce
 
 ### Changelog
 
+1. v1.1.0
+   * instance of `javax.mail.Transport`, used by the mailer is now accessible via [`Mailer#transport`](http://jurajburian.github.io/mailer/api/1.1.x/index.html#com.github.jurajburian.mailer.Mailer@transport:javax.mail.Transport)
+   * `MailerSpec` test suite now properly closes _SMTP session_ after test is finished
 2. v1.0.0
    * initial release
 
