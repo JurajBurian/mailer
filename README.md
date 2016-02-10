@@ -15,6 +15,7 @@ _Remark:_ Multiple threads can use a Session. Since a Transport represents a con
 _ScalaDoc_ documentation is available online for the following _Mailer_ versions. _Up-to-date_ documentation for the most actual version can be displayed anytime [here](http://jurajburian.github.io/mailer/api/current/#com.github.jurajburian.mailer.package).
 
 * [version 1.0.x](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.package)
+* [version 1.1.x](http://jurajburian.github.io/mailer/api/1.1.x/#com.github.jurajburian.mailer.package)
 
 ## Install
 Mailer is available for Scala 2.10 and 2.11
