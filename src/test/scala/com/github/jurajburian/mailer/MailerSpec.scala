@@ -30,7 +30,8 @@ class MailerSpec extends FlatSpec with Matchers {
 
 		// send e-mail using the 'javamail-mock2' mock
 		val content = new Content().text(MessageContentText).html(MessageContentHtml)
-		Mailer(session).send(Message(
+		val mailer = Mailer(session)
+		mailer.send(Message(
 			from = new InternetAddress(SenderAddress),
 			subject = MessageSubject,
 			content = content,
@@ -62,5 +63,8 @@ class MailerSpec extends FlatSpec with Matchers {
 				mm.getCount should be(2)
 			}
 		}
+
+		// close the SMTP session
+		mailer.close()
 	}
 }
