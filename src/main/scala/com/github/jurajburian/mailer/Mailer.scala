@@ -2,9 +2,9 @@ package com.github.jurajburian.mailer
 
 import java.io.File
 import javax.activation.{DataHandler, FileDataSource}
-import javax.mail.{Transport, Session, MessagingException}
 import javax.mail.internet._
 import javax.mail.util.ByteArrayDataSource
+import javax.mail.{MessagingException, Session, Transport}
 
 
 /**
@@ -177,6 +177,13 @@ trait Mailer {
 	def send(msg: Message): Mailer
 
 	/**
+		* Returns the instance of `javax.mail.Transport`, used by this instance of 'Mailer'
+		*
+		* @return instance of `javax.mail.Transport`
+		*/
+	def transport: Transport
+
+	/**
 		* Closes the previously opened transport connection.
 		*
 		* @return instance of the [[com.github.jurajburian.mailer.Mailer]] itself
@@ -194,20 +201,20 @@ trait Mailer {
 	*/
 object Mailer {
 
-	import  MailKeys._
+	import MailKeys._
 
 	/**
 		* Sets the ''JavaMail'' session to the ''Mailer'' and returns the instance ready to send e-mail
 		* messages. Optionally, transport method can be explicitly specified.
 		*
-		* @param session   ''JavaMail'' session
-		* @param transport transport method (optional)
+		* @param session      ''JavaMail'' session
+		* @param transportOpt transport method (optional)
 		* @return ''Mailer'' instance
 		*/
-	def apply(session: Session, transport: Option[Transport] = None) = new Mailer {
+	def apply(session: Session, transportOpt: Option[Transport] = None) = new Mailer {
 
 
-		val trt = transport match {
+		val trt = transportOpt match {
 			case None => if (session.getProperty(TransportProtocolKey) == null) {
 				session.getTransport("smtp")
 			} else {
@@ -240,6 +247,8 @@ object Mailer {
 			trt.sendMessage(message, message.getAllRecipients)
 			this
 		}
+
+		override def transport: Transport = trt
 
 		@throws[MessagingException]
 		override def close(): Mailer = {
