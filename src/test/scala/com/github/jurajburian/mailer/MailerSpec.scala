@@ -19,6 +19,7 @@ class MailerSpec extends FlatSpec with Matchers {
 	val MessageContentHtml = "Test content - <b>HTML</b>"
 	val SmtpHost = "localhost"
 	val SmtpPort = 25
+	val TestHeader = CustomHeader("TEST_NAME", "TEST_VALUE")
 
 	"Session" should "parse set of properties and return correct value" in {
 		val session = (SmtpAddress(SmtpHost, SmtpPort) :: Debug(true) :: SmtpTimeout(1000) :: SessionFactory()).session()
@@ -35,8 +36,9 @@ class MailerSpec extends FlatSpec with Matchers {
 			from = new InternetAddress(SenderAddress),
 			subject = MessageSubject,
 			content = content,
-			to = Seq(new internet.InternetAddress(RecipientAddress)
-			)))
+			to = Seq(new internet.InternetAddress(RecipientAddress)),
+			headers = Seq(TestHeader)
+		))
 
 		// open the fake INBOX folder
 		val store: Store = session.getStore("pop3s")
@@ -54,6 +56,7 @@ class MailerSpec extends FlatSpec with Matchers {
 		firstMessage.getSubject should be(MessageSubject)
 		firstMessage.getFrom()(0).toString should be(SenderAddress)
 		firstMessage.getAllRecipients()(0).toString should be(RecipientAddress)
+		firstMessage.getHeader(TestHeader.name)(0) should be(TestHeader.value)
 
 		// check whether the content parts in the MimeMultipart message are correct
 		firstContent should be(an[MimeMultipart])

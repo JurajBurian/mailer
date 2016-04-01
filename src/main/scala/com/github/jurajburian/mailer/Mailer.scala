@@ -141,6 +141,7 @@ case class Content(parts: MimeBodyPart*) {
 	* @param bcc        set of e-mail ''blind carbon copy'' receiver addresses
 	* @param replyTo    address used to reply this message (optional)
 	* @param replyToAll whether the new message will be addressed to all recipients of this message
+	* @param headers    message headers (''RFC 822'')
 	*/
 case class Message(from: InternetAddress,
 									 subject: String,
@@ -149,7 +150,8 @@ case class Message(from: InternetAddress,
 									 cc: Seq[InternetAddress] = Seq.empty[InternetAddress],
 									 bcc: Seq[InternetAddress] = Seq.empty[InternetAddress],
 									 replyTo: Option[InternetAddress] = None,
-									 replyToAll: Option[Boolean] = None) {
+									 replyToAll: Option[Boolean] = None,
+									 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]) {
 
 }
 
@@ -239,6 +241,7 @@ object Mailer {
 			msg.to.foreach(message.addRecipient(M.RecipientType.TO, _))
 			msg.cc.foreach(message.addRecipient(M.RecipientType.CC, _))
 			msg.bcc.foreach(message.addRecipient(M.RecipientType.BCC, _))
+			msg.headers.foreach(header => message.setHeader(header.name, header.value))
 			message.setSubject(msg.subject)
 			message.setFrom(msg.from)
 			message.setContent(new MimeMultipart() {
