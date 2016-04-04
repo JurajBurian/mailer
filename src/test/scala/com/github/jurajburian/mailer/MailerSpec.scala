@@ -30,7 +30,7 @@ class MailerSpec extends FlatSpec with Matchers {
 		val session = (SmtpAddress(SmtpHost, SmtpPort) :: SessionFactory()).session()
 
 		// send e-mail using the 'javamail-mock2' mock
-		val content = new Content().text(MessageContentText).html(MessageContentHtml)
+		val content = new Content().text(MessageContentText, headers = Seq(TestHeader)).html(MessageContentHtml)
 		val mailer = Mailer(session)
 		mailer.send(Message(
 			from = new InternetAddress(SenderAddress),
@@ -61,9 +61,12 @@ class MailerSpec extends FlatSpec with Matchers {
 		// check whether the content parts in the MimeMultipart message are correct
 		firstContent should be(an[MimeMultipart])
 
+		// check whether the content and metadata of the first body part are correct
 		firstContent match {
 			case mm: MimeMultipart => {
 				mm.getCount should be(2)
+				val body = mm.getBodyPart(0)
+				body.getHeader(TestHeader.name)(0) should be(TestHeader.value)
 			}
 		}
 

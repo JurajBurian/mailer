@@ -32,11 +32,15 @@ case class Content(parts: MimeBodyPart*) {
 		* @param charset charset of the given text (defaults to ''UTF-8'')
 		* @param subtype defines subtype of the ''MIME type'' (the part after the slash), defaults
 		*                to ''UTF-8''
+		* @param headers content part headers (''RFC 822'')
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
 		*/
-	def text(text: String, charset: String = "UTF-8", subtype: String = "plain"): Content = {
+	def text(text: String, charset: String = "UTF-8", subtype: String = "plain",
+					 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
+
 		val part = new MimeBodyPart()
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		part.setText(text, charset, subtype)
 		append(part)
 	}
@@ -46,11 +50,15 @@ case class Content(parts: MimeBodyPart*) {
 		*
 		* @param html    ''HTML'' string to append
 		* @param charset charset of the given ''HTML'' string (defaults to ''UTF-8'')
+		* @param headers content part headers (''RFC 822'')
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
 		*/
-	def html(html: String, charset: String = "UTF-8"): Content = {
+	def html(html: String, charset: String = "UTF-8",
+					 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
+
 		val part = new MimeBodyPart()
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		part.setText(html, charset, "html")
 		append(part)
 	}
@@ -61,17 +69,20 @@ case class Content(parts: MimeBodyPart*) {
 		* @param file      file to attach
 		* @param name      name of the attachment (optional, defaults to the given file name)
 		* @param contentId the "Content-ID" header field of this body part
+		* @param headers   content part headers (''RFC 822'')
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
 		*/
 
 	def attachFile(file: File, name: Option[String] = None,
-								 contentId: Option[String] = None): Content = {
+								 contentId: Option[String] = None,
+								 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new MimeBodyPart()
+		headers.foreach(header => part.setHeader(header.name, header.value))
+		contentId.foreach(part.setContentID)
 		part.setDataHandler(new DataHandler(new FileDataSource(file)))
 		part.setFileName(name.getOrElse(file.getName))
-		contentId.foreach(part.setContentID)
 		append(part)
 	}
 
@@ -83,15 +94,18 @@ case class Content(parts: MimeBodyPart*) {
 		* @param mimeType  ''MIME type'' of the attachment
 		* @param name      name of the attachment (optional)
 		* @param contentId the "Content-ID" header field of this body part (optional)
+		* @param headers   content part headers (''RFC 822'')
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
 		*/
 	def attachBytes(bytes: Array[Byte], mimeType: String, name: Option[String] = None,
-									contentId: Option[String] = None): Content = {
+									contentId: Option[String] = None,
+									headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new MimeBodyPart()
-		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		contentId.foreach(part.setContentID)
+		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
 		append(part)
 	}
 
@@ -105,17 +119,20 @@ case class Content(parts: MimeBodyPart*) {
 		* @param mimeType  ''MIME type'' of the attachment
 		* @param name      name of the attachment (optional)
 		* @param contentId the `Content-ID` header field of this body part (optional)
+		* @param headers   content part headers (''RFC 822'')
 		* @return instance of the [[com.github.jurajburian.mailer.Content]] class with appended
 		*         content part
 		* @see http://www.oracle.com/technetwork/java/faq-135477.html#preencoded
 		*/
 	def attachBase64(data: String, mimeType: String, name: Option[String] = None,
-									 contentId: Option[String] = None): Content = {
+									 contentId: Option[String] = None,
+									 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new PreencodedMimeBodyPart("base64")
+		headers.foreach(header => part.setHeader(header.name, header.value))
+		contentId.foreach(part.setContentID)
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(data, mimeType)))
 		name.foreach(part.setFileName)
-		contentId.foreach(part.setContentID)
 		append(part)
 	}
 
