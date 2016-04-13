@@ -16,12 +16,13 @@ _ScalaDoc_ documentation is available online for the following _Mailer_ versions
 
 * [version 1.0.x](http://jurajburian.github.io/mailer/api/1.0.x/#com.github.jurajburian.mailer.package)
 * [version 1.1.x](http://jurajburian.github.io/mailer/api/1.1.x/#com.github.jurajburian.mailer.package)
+* [version 1.2.x](http://jurajburian.github.io/mailer/api/1.2.x/#com.github.jurajburian.mailer.package)
 
 ## Install
 Mailer is available for Scala 2.10 and 2.11
 To get started with SBT, add dependency to your build.sbt file:
 ```Scala
-libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.1.0" withSources
+libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.2.0" withSources
 ```
 ## Usage
 ### 1/ Build plain Java Mail Session:  
@@ -39,7 +40,23 @@ val mailer = Mailer(session)
 ```
 Use optional parameter `transport: Option[Transport]` in `Mailer.apply` method if is necessary to use different than default transport implementation.
 
-### 3/ Send Mail
+### 2/ Build message content
+Message content is represented by the `Content` class, an _easy-to-use_ simple wrapper with set of helper methods around the `javax.mail.internet.MimeMultipart` class. When new instance of `Content` class is created, individual contents (internally represented by `javax.mail.internet.MimeBodyPart`) can be added using available helper methods for particular content types (e.g. `Content#html` for adding _HTML_ content), or instances of `javax.mail.internet.MimeBodyPart` can be added directly using the `Content#append` method.
+
+*Example of use:*
+```Scala
+val content: Content = new Content().text("raw text content part").html("<b>HTML</b> content part")
+```
+
+Specific message headers ([RFC 822](https://tools.ietf.org/html/rfc822)) can be also added to every single message content. Message header is represented by the `MessageHeader` trait, where one can implement custom classes for specific headers to achieve more typesafe way of adding headers, such as built-in `ContentDisposition` header shown below. If no specific implementation fits, `CustomHeader` implementation can be used, allowing to create header with any name and value.
+
+```Scala
+// adds the header "Content-Disposition: inline; filename=foobar.txt" to the selected content
+val contentDispositionHeader = ContentDisposition("inline", Map("filename" -> "foobar.txt"))
+val content = new Content().text("some text", headers = Seq(contentDispositionHeader))
+```
+
+### 4/ Send Mail
 ```Scala
 import javax.mail.internet.InternetAddress
 val content = new Content().text("Hello there!")
@@ -54,17 +71,20 @@ Try{mailer.send(msg)}
 // or  future 
 Future{mailer.send(msg)}
 ```
-There is several methods how to create `Content`. If one can't find any appropriate method, `Content` constructor is able to accept sequence of instances: `javax.mail.internet.MimeBodyPart` 
 _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingException`.
 ### 4/ Close Session
 `Mailer` "session" should be closed. Call `mailer.close()` or `Try{mailer.close()}` for this purpose.
 
 ### Changelog
 
-1. v1.1.0
+1. v1.2.0
+   * Added option to set custom message headers either to the message itself, or (in case of _multipart_ message) to every _body part_ separately.
+   * Scala version update (2.11.7 -> 2.11.8)
+   * SBT version update (0.3.9 -> 0.3.11)
+2. v1.1.0
    * instance of `javax.mail.Transport`, used by the mailer is now accessible via [`Mailer#transport`](http://jurajburian.github.io/mailer/api/1.1.x/index.html#com.github.jurajburian.mailer.Mailer@transport:javax.mail.Transport)
    * `MailerSpec` test suite now properly closes _SMTP session_ after test is finished
-2. v1.0.0
+3. v1.0.0
    * initial release
 
 ### Contributors
