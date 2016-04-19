@@ -40,8 +40,8 @@ case class Content(parts: MimeBodyPart*) {
 					 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new MimeBodyPart()
-		headers.foreach(header => part.setHeader(header.name, header.value))
 		part.setText(text, charset, subtype)
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		append(part)
 	}
 
@@ -58,8 +58,8 @@ case class Content(parts: MimeBodyPart*) {
 					 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new MimeBodyPart()
-		headers.foreach(header => part.setHeader(header.name, header.value))
 		part.setText(html, charset, "html")
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		append(part)
 	}
 
@@ -79,10 +79,10 @@ case class Content(parts: MimeBodyPart*) {
 								 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new MimeBodyPart()
-		headers.foreach(header => part.setHeader(header.name, header.value))
 		contentId.foreach(part.setContentID)
 		part.setDataHandler(new DataHandler(new FileDataSource(file)))
 		part.setFileName(name.getOrElse(file.getName))
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		append(part)
 	}
 
@@ -103,9 +103,9 @@ case class Content(parts: MimeBodyPart*) {
 									headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new MimeBodyPart()
-		headers.foreach(header => part.setHeader(header.name, header.value))
 		contentId.foreach(part.setContentID)
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		append(part)
 	}
 
@@ -129,10 +129,10 @@ case class Content(parts: MimeBodyPart*) {
 									 headers: Seq[MessageHeader] = Seq.empty[MessageHeader]): Content = {
 
 		val part = new PreencodedMimeBodyPart("base64")
-		headers.foreach(header => part.setHeader(header.name, header.value))
 		contentId.foreach(part.setContentID)
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(data, mimeType)))
 		name.foreach(part.setFileName)
+		headers.foreach(header => part.setHeader(header.name, header.value))
 		append(part)
 	}
 
