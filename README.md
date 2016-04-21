@@ -77,16 +77,16 @@ _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingExce
 
 ### Changelog
 
-1. v1.2.1
+* **v1.2.1**
    * BugFix: Custom message (or message content) headers are now set **after** all *JavaMail* headers, preventing *JavaMail* from overwriting custom headers.
-2. v1.2.0
+* **v1.2.0**
    * Added option to set custom message headers either to the message itself, or (in case of _multipart_ message) to every _body part_ separately.
    * Scala version update (2.11.7 -> 2.11.8)
    * SBT version update (0.3.9 -> 0.3.11)
-3. v1.1.0
+* **v1.1.0**
    * instance of `javax.mail.Transport`, used by the mailer is now accessible via [`Mailer#transport`](http://jurajburian.github.io/mailer/api/1.1.x/index.html#com.github.jurajburian.mailer.Mailer@transport:javax.mail.Transport)
    * `MailerSpec` test suite now properly closes _SMTP session_ after test is finished
-4. v1.0.0
+* **v1.0.0**
    * initial release
 
 ### Contributors
