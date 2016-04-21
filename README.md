@@ -40,7 +40,7 @@ val mailer = Mailer(session)
 ```
 Use optional parameter `transport: Option[Transport]` in `Mailer.apply` method if is necessary to use different than default transport implementation.
 
-### 2/ Build message content
+### 3/ Build message content
 Message content is represented by the `Content` class, an _easy-to-use_ simple wrapper with set of helper methods around the `javax.mail.internet.MimeMultipart` class. When new instance of `Content` class is created, individual contents (internally represented by `javax.mail.internet.MimeBodyPart`) can be added using available helper methods for particular content types (e.g. `Content#html` for adding _HTML_ content), or instances of `javax.mail.internet.MimeBodyPart` can be added directly using the `Content#append` method.
 
 *Example of use:*
@@ -72,7 +72,7 @@ Try{mailer.send(msg)}
 Future{mailer.send(msg)}
 ```
 _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingException`.
-### 4/ Close Session
+### 5/ Close Session
 `Mailer` "session" should be closed. Call `mailer.close()` or `Try{mailer.close()}` for this purpose.
 
 ### Changelog
