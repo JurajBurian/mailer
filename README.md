@@ -93,3 +93,6 @@ _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingExce
 * Juraj Burian ([@JurajBurian](https://github.com/JurajBurian))
 * Vaclav Svejcar ([@vaclavsvejcar](https://github.com/vaclavsvejcar))
 * Jan Nad ([@jannad](https://github.com/jannad))
+
+### Known users
+* ESL - https://www.eslgaming.com 
