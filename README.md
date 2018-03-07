@@ -19,10 +19,10 @@ _ScalaDoc_ documentation is available online for the following _Mailer_ versions
 * [version 1.2.x](http://jurajburian.github.io/mailer/api/1.2.x/#com.github.jurajburian.mailer.package)
 
 ## Install
-Mailer is available for Scala 2.10, 2.11 and 2.12
+Mailer is available for Scala 2.11 and 2.12
 To get started with SBT, add dependency to your build.sbt file:
 ```Scala
-libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.2.1" withSources
+libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.2.2" withSources
 ```
 ## Usage
 ### 1/ Build plain Java Mail Session:  
@@ -77,6 +77,8 @@ _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingExce
 
 ### Changelog
 
+* **v1.2.2**
+   * BugFix: Added file name to Content.
 * **v1.2.1**
    * BugFix: Custom message (or message content) headers are now set **after** all *JavaMail* headers, preventing *JavaMail* from overwriting custom headers.
 * **v1.2.0**
@@ -92,7 +94,7 @@ _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingExce
 ### Contributors
 * Juraj Burian ([@JurajBurian](https://github.com/JurajBurian))
 * Vaclav Svejcar ([@vaclavsvejcar](https://github.com/vaclavsvejcar))
-* Jan Nad ([@jannad](https://github.com/jannad))
+* Fabian Gruber ([@basert](https://github.com/basert))
 
 ### Known users
 * ESL - https://www.eslgaming.com 
