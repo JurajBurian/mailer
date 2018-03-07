@@ -105,6 +105,7 @@ case class Content(parts: MimeBodyPart*) {
 		val part = new MimeBodyPart()
 		contentId.foreach(part.setContentID)
 		part.setDataHandler(new DataHandler(new ByteArrayDataSource(bytes, mimeType)))
+		name.foreach(part.setFileName)
 		headers.foreach(header => part.setHeader(header.name, header.value))
 		append(part)
 	}
