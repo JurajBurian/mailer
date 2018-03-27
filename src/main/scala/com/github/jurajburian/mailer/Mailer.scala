@@ -1,8 +1,9 @@
 package com.github.jurajburian.mailer
 
 import java.io.File
+
 import javax.activation.{DataHandler, FileDataSource}
-import javax.mail.internet._
+import javax.mail.internet.{InternetAddress, MimeBodyPart, MimeMultipart, PreencodedMimeBodyPart}
 import javax.mail.util.ByteArrayDataSource
 import javax.mail.{MessagingException, Session, Transport}
 
