@@ -22,7 +22,7 @@ _ScalaDoc_ documentation is available online for the following _Mailer_ versions
 Mailer is available for Scala 2.11 and 2.12
 To get started with SBT, add dependency to your build.sbt file:
 ```Scala
-libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.2.2" withSources
+libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.2.3" withSources
 ```
 ## Usage
 ### 1/ Build plain Java Mail Session:
