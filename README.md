@@ -1,7 +1,7 @@
 # Mailer
 
 ![alt tag](/doc/logo.png?raw=true)
-A thin wrapper over _JavaMail_ library written in the Scala language. 
+A thin wrapper over _JavaMail_ library written in the Scala language.
 `Mailer`'s aim is to be used in situations when it is necessary to send multiple mails efficiently. `Mailer` achieves this by creating a single instance of `javax.mail.Session`, getting and opening a javax.mail.Transport instance, and sending a bulk of emails through it.
 
 There is actually an existing _JavaMail_ e-mail sender library written in _Scala_, called [Courier](https://github.com/softprops/courier). The main motivation of creating another _JavaMail_ wrapper was to solve the several issues of the existing _Courier_ library using following improvements:
@@ -25,7 +25,7 @@ To get started with SBT, add dependency to your build.sbt file:
 libraryDependencies += "com.github.jurajburian" %% "mailer" % "1.2.2" withSources
 ```
 ## Usage
-### 1/ Build plain Java Mail Session:  
+### 1/ Build plain Java Mail Session:
 ```Scala
 import com.github.jurajburian.mailer._
 val session = (SmtpAddress("smtp.gmail.com", 587) :: SessionFactory()).session(Some("user@gmail.com"-> "password"))
@@ -65,10 +65,10 @@ val msg = Message(
       subject = "my subject",
       content = content,
       to = Seq(new InternetAddress(ReceiverAddress)))
-val mailer = Mailer(session)      
-// recomendations: use try       
+val mailer = Mailer(session)
+// recomendations: use try
 Try{mailer.send(msg)}
-// or  future 
+// or  future
 Future{mailer.send(msg)}
 ```
 _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingException`.
@@ -77,10 +77,12 @@ _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingExce
 
 ### Changelog
 
+* **v1.2.3**
+   * Bugfix: "Message-ID" header now gets correctly set if specified on the message.
 * **v1.2.2**
-   * BugFix: Added file name to Content.
+   * Bugfix: Added file name to Content.
 * **v1.2.1**
-   * BugFix: Custom message (or message content) headers are now set **after** all *JavaMail* headers, preventing *JavaMail* from overwriting custom headers.
+   * Bugfix: Custom message (or message content) headers are now set **after** all *JavaMail* headers, preventing *JavaMail* from overwriting custom headers.
 * **v1.2.0**
    * Added option to set custom message headers either to the message itself, or (in case of _multipart_ message) to every _body part_ separately.
    * Scala version update (2.11.7 -> 2.11.8)
@@ -97,4 +99,4 @@ _Remark:_ All methods from the Mailer trait may thrown `javax.mail.MessagingExce
 * Fabian Gruber ([@basert](https://github.com/basert))
 
 ### Known users
-* ESL - https://www.eslgaming.com 
+* ESL - https://www.eslgaming.com

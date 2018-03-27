@@ -4,7 +4,7 @@ organization := "com.github.jurajburian"
 
 name := "mailer"
 
-version := "1.2.2"
+version := "1.2.3"
 
 description := "Thin wrapper of JavaMail library written in Scala language. Mailer is aim to be used in situations when is necessary send multiple mails, e.t. instance of javax.mail.Session is created and used by Mailer."
 
@@ -29,7 +29,6 @@ publishArtifact in Test := false
 
 pomIncludeRepository := { _ => false }
 
-
 pomExtra := (
 	<url>https://github.com/JurajBurian/mailer</url>
 		<licenses>
@@ -50,14 +49,14 @@ pomExtra := (
 				<url>https://github.com/JurajBurian</url>
 			</developer>
 			<developer>
-				<id>xwinus</id>
+				<id>vaclavsvejcar</id>
 				<name>Vaclav Svejcar</name>
-				<url>https://github.com/xwinus</url>
+				<url>https://github.com/vaclavsvejcar</url>
 			</developer>
 			<developer>
-				<id>jannad</id>
-				<name>Jan Nad</name>
-				<url>https://github.com/jannad</url>
+				<id>basert</id>
+				<name>Fabian Gruber</name>
+				<url>https://github.com/basert</url>
 			</developer>
 		</developers>)
 
