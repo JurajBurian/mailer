@@ -6,3 +6,7 @@ resolvers += Resolver.url(
 addSbtPlugin("me.lessis" % "bintray-sbt" % "0.1.2")
 
 addSbtPlugin("me.lessis" % "ls-sbt" % "0.1.3")
+
+addSbtPlugin("org.xerial.sbt" % "sbt-sonatype" % "2.0")
+
+addSbtPlugin("com.jsuereth" % "sbt-pgp" % "1.1.0")
