@@ -1,4 +1,4 @@
-val pScalaVersion = "2.12.4"
+val pScalaVersion = "2.13.5"
 
 organization := "com.github.jurajburian"
 
@@ -10,7 +10,7 @@ description := "Thin wrapper of JavaMail library written in Scala language. Mail
 
 scalaVersion in Scope.GlobalScope := pScalaVersion
 
-crossScalaVersions := Seq("2.11.8", pScalaVersion)
+crossScalaVersions := Seq("2.11.12", "2.12.13", pScalaVersion)
 
 publishMavenStyle := true
 
@@ -74,5 +74,5 @@ scalacOptions := Seq(
 libraryDependencies ++= Seq(
 	"javax.mail" % "mail" % "1.4.7",
 	"de.saly" % "javamail-mock2-fullmock" % "0.5-beta4" % "test",
-	"org.scalatest" %% "scalatest" % "3.0.5" % "test"
+	"org.scalatest" %% "scalatest" % "3.0.9" % "test"
 )
