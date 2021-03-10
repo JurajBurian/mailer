@@ -64,7 +64,7 @@ class MailerSpec extends FlatSpec with Matchers {
 		firstContent should be(an[MimeMultipart])
 
 		// check whether the content and metadata of the first body part are correct
-		firstContent match {
+		(firstContent: @unchecked) match {
 			case mm: MimeMultipart => {
 				mm.getCount should be(2)
 				val body = mm.getBodyPart(0)
