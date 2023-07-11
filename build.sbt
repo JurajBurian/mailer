@@ -4,7 +4,7 @@ organization := "com.github.jurajburian"
 
 name := "mailer"
 
-version := "1.2.3"
+version := "1.2.4"
 
 description := "Thin wrapper of JavaMail library written in Scala language. Mailer is aim to be used in situations when is necessary send multiple mails, e.t. instance of javax.mail.Session is created and used by Mailer."
 
@@ -72,7 +72,7 @@ scalacOptions := Seq(
 )
 
 libraryDependencies ++= Seq(
-	"javax.mail" % "mail" % "1.4.7",
+	"com.sun.mail" % "javax.mail" % "1.6.2",
 	"de.saly" % "javamail-mock2-fullmock" % "0.5-beta4" % "test",
 	"org.scalatest" %% "scalatest" % "3.0.9" % "test"
 )
